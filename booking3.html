@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chill Thrive | Summary</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Helvetica Neue,Arial;
+  background:#F4F9FF;
+  color:#111;
+}
+*{box-sizing:border-box}
+
+/* NAVBAR (SAME AS YOURS) */
+
+
+.menu{font-size:26px;cursor:pointer}
+
+/* LAYOUT */
+.wrap{
+  max-width:1200px;
+  margin:120px auto;
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:40px;
+  padding:0 20px;
+}
+
+/* LEFT PANEL */
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card h2{
+  margin-bottom:20px;
+  color:#003366;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.info p{
+  margin:0;
+  font-size:14px;
+  color:#666;
+}
+
+.info strong{
+  display:block;
+  font-size:16px;
+  color:#111;
+}
+
+/* TERMS */
+.terms{
+  margin-top:30px;
+  font-size:14px;
+}
+
+button{
+  margin-top:30px;
+  width:100%;
+  padding:18px;
+  background:#0d2f51;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* SUMMARY */
+.summary{
+  background:#EAF2FB;
+  border-radius:12px;
+  padding:30px;
+}
+
+.summary h3{
+  margin-top:0;
+  color:#003366;
+}
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  margin:12px 0;
+}
+
+.total{
+  font-size:18px;
+  font-weight:bold;
+  margin-top:20px;
+}
+/* QR MODAL */
+.qr-modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.qr-box{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  width:320px;
+}
+
+.qr-box img{
+  margin:20px 0;
+}
+
+.cancel-btn{
+  background:#ccc;
+  color:#000;
+  margin-top:10px;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
+
+/* GOLDEN LUXURY LINE */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
+
+/* LEFT */
+.nav-left{
+  display:flex;
+  align-items:center;
+  z-index:2;
+}
+
+.nav-logo{
+  height:68px;
+}
+
+/* CENTER */
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  z-index:1;
+}
+
+.brand-main{
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand-sub{
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  align-items:center;
+  z-index:3;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:350px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:100px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:70px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:15px;
+  transition:0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  width:18px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo" alt="Chill Thrive">
+  </div>
+
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
+  </nav>
+
+
+<div class="wrap">
+
+  <!-- GUEST INFO -->
+  <div class="card">
+    <h2>Guest Information</h2>
+
+    <div class="info">
+      <div>
+        <p>First name</p>
+        <strong id="fname"></strong>
+      </div>
+      <div>
+        <p>Last name</p>
+        <strong id="lname"></strong>
+      </div>
+      <div>
+        <p>Gender</p>
+        <strong id="gender"></strong>
+      </div>
+      <div>
+        <p>Phone</p>
+        <strong id="phone"></strong>
+      </div>
+      <div>
+        <p>Email</p>
+        <strong id="email"></strong>
+      </div>
+    </div>
+
+    <div class="terms">
+      <input type="checkbox"> I accept the terms and conditions
+    </div>
+
+    <button onclick="confirmPayNow()">Confirm and Pay Now</button>
+    <button onclick="confirmPayLater()">Confirm and Pay Later</button>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+  <h3>Summary</h3>
+
+  <p><b id="summaryService"></b></p>
+  <p id="summarySession"></p>
+  <p id="summaryDateTime" style="font-size:14px;color:#666"></p>
+
+  <div class="summary-line">
+    <span>Subtotal</span>
+    <span id="subtotal"></span>
+  </div>
+
+  <!-- PROMO CODE -->
+  <div style="margin-top:20px">
+    <input id="promoInput" placeholder="Enter promo code"
+      style="padding:12px;width:100%;border-radius:6px;border:1px solid #ccc">
+    <button onclick="applyPromo()" 
+      style="margin-top:10px;background:#4A77B5">
+      Apply
+    </button>
+    <p id="promoMsg" style="font-size:14px;margin-top:8px"></p>
+  </div>
+
+  <div class="summary-line" id="discountRow" style="display:none">
+    <span>Discount</span>
+    <span id="discount"></span>
+  </div>
+
+  <div class="total">
+    Total <span id="total">₹ 4,500</span>
+  </div>
+</div>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+  const firebaseConfig = {
+     apiKey: "AIzaSyD8_xuBzMXPrhqoIyG8jLRZtWd2q0Lcsrs",
+    authDomain: "chill-thrive-8ec9c.firebaseapp.com",
+    projectId: "chill-thrive-8ec9c",
+    storageBucket: "chill-thrive-8ec9c.firebasestorage.app",
+    messagingSenderId: "620526540978",
+    appId: "1:620526540978:web:803517f456f8c2a15891ab",
+    measurementId: "G-PG8BVMNF9D"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  const db = firebase.firestore();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("07YNY8Kw0hXbiRAQH"); // 🔁 replace
+})();
+</script>
+
+
+<script>
+document.getElementById("fname").innerText = sessionStorage.getItem("fname");
+document.getElementById("lname").innerText = sessionStorage.getItem("lname");
+document.getElementById("gender").innerText = sessionStorage.getItem("gender");
+document.getElementById("phone").innerText = sessionStorage.getItem("phone");
+document.getElementById("email").innerText = sessionStorage.getItem("email");
+
+
+async function applyPromo() {
+  const code = document
+    .getElementById("promoInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+  const msg = document.getElementById("promoMsg");
+
+  if (!code) {
+    msg.innerText = "Enter a promo code";
+    msg.style.color = "red";
+    return;
+  }
+
+  try {
+    const doc = await db
+      .collection("promo_codes")
+      .doc(code)
+      .get();
+
+    if (!doc.exists || !doc.data().active) {
+      msg.innerText = "Invalid promo code";
+      msg.style.color = "red";
+      return;
+    }
+
+    const discountAmt = doc.data().discount; // always 500
+    finalPrice = Math.max(0, basePrice - discountAmt);
+
+    document.getElementById("discount").innerText = `- ₹ ${discountAmt}`;
+    document.getElementById("discountRow").style.display = "flex";
+    document.getElementById("total").innerText = `₹ ${finalPrice}`;
+
+    msg.innerText = "Promo applied successfully (₹500 off)";
+    msg.style.color = "green";
+
+    sessionStorage.setItem("finalPrice", finalPrice);
+
+  } catch (err) {
+    console.error(err);
+    msg.innerText = "Something went wrong";
+    msg.style.color = "red";
+  }
+}
+
+
+// ================= SERVICE DATA =================
+const service = localStorage.getItem("service");
+const date = localStorage.getItem("date");
+const time = localStorage.getItem("time");
+
+// Service pricing config (same logic as booking)
+
+// Fill summary details
+document.getElementById("summaryService").innerText = service;
+
+document.getElementById("summarySession").innerText =
+  `${service} Session`;
+
+document.getElementById("summaryDateTime").innerText =
+  `${date} at ${time}`;
+
+// Price handling
+let basePrice = Number(sessionStorage.getItem("servicePrice")) || 0;
+let finalPrice = basePrice;
+
+document.getElementById("subtotal").innerText = `₹ ${basePrice}`;
+document.getElementById("total").innerText = `₹ ${basePrice}`;
+
+// ================= CONFIRMATION LOGIC =================
+
+function confirmPayNow(){
+
+  if(!document.querySelector('input[type="checkbox"]').checked){
+    alert("Please accept terms and conditions");
+    return;
+  }
+
+  // Show QR modal
+  document.getElementById("qrAmount").innerText = finalPrice;
+  document.getElementById("qrModal").style.display = "flex";
+}
+async function confirmPayLater(){
+
+  if(!document.querySelector('input[type="checkbox"]').checked){
+    alert("Please accept terms and conditions");
+    return;
+  }
+
+  const confirmBooking = confirm(
+    `Confirm your reservation?\n\nService: ${service}\nDate: ${date}\nTime: ${time}\nTotal: ₹ ${finalPrice}\n\nPayment will be done at the center.`
+  );
+
+  if(confirmBooking){
+    await saveBooking("PAY_LATER");
+
+    // ✅ SEND EMAIL HERE
+    sendBookingEmail("PAY_LATER");
+
+    alert("✅ Reservation confirmed!\nPlease complete payment at the center.");
+
+    localStorage.clear();
+    sessionStorage.clear();
+
+    window.location.href = "http://127.0.0.1:5500/Web%20Page/index.html";
+  }
+}
+
+
+function closeQR(){
+  document.getElementById("qrModal").style.display = "none";
+}
+
+async function paymentSuccess(){
+  await saveBooking("PAID");
+
+  // ✅ SEND EMAIL HERE
+  sendBookingEmail("PAID");
+
+  alert("✅ Payment Successful!\nYour reservation is confirmed.");
+
+  document.getElementById("qrModal").style.display = "none";
+  localStorage.clear();
+  sessionStorage.clear();
+
+  window.location.href = "http://127.0.0.1:5500/Web%20Page/index.html";
+}
+
+</script>
+
+<script>
+async function saveBooking(paymentStatus) {
+  try {
+    await db.collection("bookings").add({
+      firstName: sessionStorage.getItem("fname"),
+      lastName: sessionStorage.getItem("lname"),
+      gender: sessionStorage.getItem("gender"),
+      phone: sessionStorage.getItem("phone"),
+      email: sessionStorage.getItem("email"),
+      service: service,
+      date: date,
+      time: time,
+      amount: finalPrice,
+      paymentStatus: paymentStatus, // PAID / PAY_LATER
+      status: "ACTIVE",
+      createdAt: firebase.firestore.FieldValue.serverTimestamp() 
+    });
+  } catch (err) {
+    console.error("Booking save failed", err);
+    alert("Failed to save booking. Please try again.");
+  }
+  console.log("Saving booking:", {
+  firstName: sessionStorage.getItem("fname"),
+  service, date, time
+});
+
+}
+</script>
+<script>
+function sendBookingEmail(paymentStatus) {
+
+  const templateParams = {
+    name: sessionStorage.getItem("fname") + " " + sessionStorage.getItem("lname"),
+    email: sessionStorage.getItem("email"),
+    service: service,
+    date: date,
+    time: time,
+    amount: finalPrice,
+    payment_status: paymentStatus === "PAID" ? "Paid Online" : "Pay at Center"
+  };
+
+  emailjs.send(
+    "chillthrive_2026",     // 🔁 replace
+    "template_ziz6hf4",    // 🔁 replace
+    templateParams
+  )
+  .then(() => {
+    console.log("📧 Booking confirmation email sent");
+  })
+  .catch(err => {
+    console.error("❌ Email failed:", err);
+  });
+}
+</script>
+
+<!-- QR PAYMENT MODAL -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-box">
+    <h2>Scan & Pay</h2>
+    <p>Use any UPI app to complete payment</p>
+
+    <!-- Dummy QR -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CHILLTHRIVE-DUMMY-PAYMENT" 
+         alt="Dummy QR Code">
+
+    <p style="margin-top:10px;font-weight:bold">
+      Amount: ₹ <span id="qrAmount"></span>
+    </p>
+
+    <button onclick="paymentSuccess()">Payment Completed</button>
+    <button class="cancel-btn" onclick="closeQR()">Cancel</button>
+  </div>
+</div>
+
+</body>
+</html>

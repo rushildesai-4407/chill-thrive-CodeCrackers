@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Awareness | Chill Thrive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --nav:#0F172A;
+  --nav-soft:#14213D;
+  --gold:#C9A24D;
+  --bg:#F4F9FF;
+  --text:#0B1F3B;
+  --muted:#5C6B82;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 50px;
+  background:linear-gradient(90deg,var(--nav),var(--nav-soft));
+  border-bottom:1px solid rgba(201,162,77,.25);
+  z-index:1000;
+}
+.nav-left img{height:46px}
+.nav-center{text-align:center}
+.nav-center h1{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  color:var(--gold);
+}
+.nav-center span{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#EAEAEA;
+}
+.menu{font-size:28px;color:var(--gold);cursor:pointer}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;right:-340px;
+  width:340px;height:100%;
+  background:linear-gradient(180deg,var(--nav),#08101E);
+  padding:45px;
+  transition:.45s ease;
+  z-index:1200;
+}
+.sidebar.active{right:0}
+.sidebar a{
+  display:block;
+  margin:28px 0;
+  font-size:18px;
+  color:white;
+  text-decoration:none;
+}
+.close-btn{font-size:36px;color:white;text-align:right;cursor:pointer}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:90vh;
+  margin-top:100px; /* keeps navbar spacing */
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  min-width:100%;
+  min-height:100%;
+  transform:translate(-50%,-50%);
+  object-fit:cover;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.25),rgba(0,0,0,.6));
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  padding:0 20px;
+  animation:cinematic 2.2s ease forwards;
+}
+.hero h2{
+  font-family:'Playfair Display',serif;
+  font-size:54px;
+  color:#FFFFFF;
+  margin-bottom:18px;
+  filter:blur(10px);
+  animation:textFocus 2.2s ease forwards;
+  text-shadow:0 12px 35px rgba(0,0,0,.65);
+}
+.hero .underline{
+  width:0;
+  height:3px;
+  background:var(--gold);
+  margin:18px auto;
+  animation:underline 1.2s ease forwards;
+  animation-delay:1.2s;
+}
+.hero p{
+  font-size:20px;
+  color:#F1F5F9;
+  opacity:0;
+  animation:fadeUp 1.4s ease forwards;
+  animation-delay:1.4s;
+  text-shadow:0 6px 20px rgba(0,0,0,.55);
+}
+
+/* ANIMATIONS */
+@keyframes cinematic{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:none}
+}
+@keyframes textFocus{
+  from{filter:blur(12px);opacity:0}
+  to{filter:blur(0);opacity:1}
+}
+@keyframes underline{
+  from{width:0}
+  to{width:120px}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:1s cubic-bezier(.19,1,.22,1);
+}
+.reveal.active{opacity:1;transform:none}
+
+/* SECTIONS — FULL WIDTH */
+.section{
+  width:100%;
+  padding:90px 0;
+}
+
+/* CENTERED CONTENT */
+.section-inner{
+  max-width:1000px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.section h3{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  margin-bottom:24px;
+}
+.section p{
+  font-size:17px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+/* FEATURES */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:32px;
+  margin-top:40px;
+}
+.feature{
+  background:white;
+  border-radius:22px;
+  padding:40px;
+  box-shadow:0 25px 60px rgba(0,0,0,.08);
+  transition:.35s ease;
+}
+.feature:hover{transform:translateY(-6px)}
+.feature h4{
+  font-size:22px;
+  margin-bottom:12px;
+  color:var(--nav);
+}
+
+/* DARK */
+.dark{
+  background:linear-gradient(180deg,#0F172A,#0B1220);
+  color:white;
+}
+.dark h3{color:var(--gold)}
+.dark p{color:#D3D7E3}
+
+/* TIMELINE */
+.timeline{margin-top:40px}
+.step{
+  border-left:3px solid var(--gold);
+  padding-left:22px;
+  margin-bottom:28px;
+}
+.step span{
+  font-size:13px;
+  letter-spacing:2px;
+  color:var(--gold);
+}
+.step p{margin-top:8px}
+
+/* FOOTER */
+footer{
+  background:#0B1220;
+  color:#C9D3EA;
+  text-align:center;
+  padding:28px;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h2{font-size:34px}
+  .hero p{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-left"><img src="chillthrive.png"></div>
+  <div class="nav-center">
+    <h1>Chill Thrive</h1>
+    <span>ICE BATH CENTER</span>
+  </div>
+  <div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+
+<div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">×</div>
+  <a href="index.html">Home</a>
+  <a href="#">Services</a>
+  <a href="#">Our Story</a>
+  <a href="#">The Founder</a>
+  <a href="#">Contact</a>
+</div>
+
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h2>Understanding Recovery</h2>
+    <div class="underline"></div>
+    <p>Ice. Steam. Water. Stillness.<br>Recovery is not a luxury — it is a necessity.</p>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-inner">
+    <h3>Ice Bath Therapy</h3>
+    <p>Cold immersion is one of the most powerful tools for physical and mental recovery.</p>
+    <div class="feature-grid">
+      <div class="feature"><h4>Physical Benefits</h4><p>Reduces muscle soreness and accelerates recovery.</p></div>
+      <div class="feature"><h4>Mental Resilience</h4><p>Builds stress tolerance and clarity.</p></div>
+      <div class="feature"><h4>Hormonal Balance</h4><p>Boosts dopamine and metabolic health.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark reveal">
+  <div class="section-inner">
+    <h3>Steam Bath Therapy</h3>
+    <p>Steam therapy promotes detoxification and parasympathetic recovery.</p>
+    <div class="timeline">
+      <div class="step"><span>DETOX</span><p>Flushes toxins and improves skin health.</p></div>
+      <div class="step"><span>RELAXATION</span><p>Calms the nervous system.</p></div>
+      <div class="step"><span>RESPIRATION</span><p>Supports lung function.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-inner">
+    <h3>Jacuzzi & Hydrotherapy</h3>
+    <p>Water pressure combined with warmth creates a powerful recovery environment.</p>
+    <div class="feature-grid">
+      <div class="feature"><h4>Joint Relief</h4><p>Reduces stiffness and increases mobility.</p></div>
+      <div class="feature"><h4>Circulation Boost</h4><p>Improves blood flow.</p></div>
+      <div class="feature"><h4>Stress Reduction</h4><p>Encourages deep relaxation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark reveal">
+  <div class="section-inner">
+    <h3>Our Recovery Philosophy</h3>
+    <p>Recovery is structured, intentional, and calm.</p>
+    <div class="timeline">
+      <div class="step"><span>INTENTIONALITY</span><p>Every session has purpose.</p></div>
+      <div class="step"><span>CONSISTENCY</span><p>Recovery is a practice.</p></div>
+      <div class="step"><span>STILLNESS</span><p>Strength is built in quiet moments.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Chill Thrive Ice Bath Center. All rights reserved.
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-80){
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

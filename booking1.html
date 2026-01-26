@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chill Thrive | Booking</title>
+
+<style>
+:root{
+  --nav:#0D3475;
+  --blue:#1b517e;
+  --soft:#EAF3FC;
+  --border:#D6E6F5;
+  --text:#0B1F3B;
+  --muted:#6F86A3;
+  --shadow:0 12px 30px rgba(13,52,117,.12);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Helvetica Neue,Arial,sans-serif;
+  background:#F3F8FE;
+  color:var(--text);
+}
+
+/* ================= NAV ================= */
+
+
+
+
+.logo{
+  height:40px;
+  width:auto;
+  cursor: pointer;
+}
+
+.nav-title{
+ font-size:22px;
+ font-weight:bold;
+ color:white;
+ letter-spacing:1px;
+}
+
+.tagline{
+  display:bolck;
+  font-size:12px;
+  opacity:0.8;
+}
+.menu{font-size:26px;cursor:pointer}
+
+
+.close-btn{
+  color:white;
+  font-size:24px;
+  text-align:right;
+  cursor:pointer;
+  padding-bottom:10px;
+}
+
+
+
+/* ================= LAYOUT ================= */
+.page-content{
+  padding:100px 50px 40px;
+}
+.main{
+  max-width:1200px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:32px;
+  padding:0 20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.75);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:24px;
+  backdrop-filter:blur(10px);
+}
+
+/* ================= CALENDAR ================= */
+.cal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.cal-head button{
+  border:none;
+  background:none;
+  font-size:20px;
+  cursor:pointer;
+  color:var(--blue);
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  text-align:center;
+}
+
+.calendar div{
+  padding:10px 0;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.day{
+  cursor:pointer;
+  border-radius:50%;
+}
+
+.day:hover{
+  background:var(--soft);
+}
+
+.selected{
+  background:var(--blue);
+  color:#fff !important;
+}
+
+/* ================= PREFERENCES ================= */
+.preferences{
+  margin-top:24px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+
+.preferences h4{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.pref-item{
+  font-size:14px;
+  color:var(--text);
+  margin-bottom:8px;
+   background:var(--soft);
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+/* ================= AVAILABILITY ================= */
+.avail{
+  background:rgba(255,255,255,0.75);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:26px;
+  margin-bottom:16px;
+}
+
+.avail h4{
+    margin-bottom:10px;
+  font-family:'Playfair Display',serif;
+}
+
+.times{
+  margin-top:14px;
+}
+
+.time{
+  display:inline-block;
+  padding:10px 18px;
+  margin:6px;
+  border-radius:30px;
+  background:var(--soft);
+  cursor:pointer;
+  font-size:13px;
+  transition:.3s ease;
+}
+
+.time.selected{
+  background:var(--nav);
+  color:#fff;
+}
+.time:hover{
+  background:#EAF1FB;
+}
+
+/* ================= CONFIRM ================= */
+.confirm{
+  width:100%;
+  padding:18px;
+  border:none;
+  border-radius:12px;
+  background:#CBD7E6;
+  color:#fff;
+  font-size:16px;
+  cursor:not-allowed;
+  margin-top:20px;
+}
+.day.disabled{
+  color: #b0b0b0;
+  background: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+.confirm.active{
+  background:linear-gradient(135deg,#5FA8E5,#1F6FB2);
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+  .main{grid-template-columns:1fr}
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ---------- ROOT COLORS ---------- */
+:root{
+  --white:#FFFFFF;
+  --accent-gold:#EFC07B;
+}
+
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= FOOTER ================= */
+
+.grand-footer{
+  background:#0F172A;
+  color:var(--white);
+  padding:50px 6% 25px;
+  font-family:'Inter', sans-serif;
+}
+
+/* ---------- DIVIDER ---------- */
+.footer-divider{
+  border:0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-bottom:35px;
+}
+
+/* ---------- MAIN GRID ---------- */
+.footer-main{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:30px;
+  margin-bottom:45px;
+}
+
+.footer-logo{
+  height:45px;
+  margin-bottom:12px;
+}
+
+/* ---------- COLUMNS ---------- */
+.footer-col h4{
+  color:var(--accent-gold);
+  text-transform:uppercase;
+  font-size:0.7rem;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.footer-col a{
+  display:block;
+  color:var(--white);
+  text-decoration:none;
+  opacity:0.65;
+  margin-bottom:8px;
+  font-size:0.85rem;
+  transition:0.3s ease;
+}
+
+.footer-col a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+  transform:translateX(4px);
+}
+
+.footer-phone{
+  font-size:1rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+/* ---------- BRAND STRIP ---------- */
+.brand-strip{
+  display:flex;
+  justify-content:space-between;
+  padding:22px 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:25px;
+  opacity:0.45;
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+}
+
+/* ---------- BOTTOM ---------- */
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.social-links a{
+  font-size:2rem;
+  margin-right:15px;
+  
+  
+  transition:0.3s;
+}
+
+.social-links a:hover{
+  opacity:1;
+  color:white;
+}
+
+.legal-links a{
+  font-size:0.7rem;
+  opacity:0.5;
+  margin-right:12px;
+  color:var(--white);
+  text-decoration:none;
+}
+
+.legal-links a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+}
+
+.copyright{
+  width:100%;
+  margin-top:15px;
+  text-align:center;
+  font-size:0.7rem;
+  opacity:0.4;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .footer-main{grid-template-columns:1fr 1fr;}
+  .brand-strip{flex-direction:column; gap:8px;}
+}
+
+@media(max-width:600px){
+  .footer-main{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column; text-align:center;}
+}
+</style>
+    </style>
+       <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>.social-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.social-icon{
+  font-size:28px;
+  cursor:pointer;
+  transition:transform 0.25s ease, color 0.25s ease;
+}
+
+.social-icon:hover{
+  transform:scale(1.15);
+}
+
+/* Brand colors */
+.instagram{ color:#d4507c; }
+.instagram:hover{ color:#C13584; }
+
+.facebook{ color:#1877F2; }
+.facebook:hover{ color:#145DBF; }
+
+.x{ color:white; }
+.x:hover{ color:#444; }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
+
+/* GOLDEN LUXURY LINE */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
+
+/* LEFT */
+.nav-left{
+  display:flex;
+  align-items:center;
+  z-index:2;
+}
+
+.nav-logo{
+  height:68px;
+}
+
+/* CENTER */
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  z-index:1;
+}
+
+.brand-main{
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand-sub{
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  align-items:center;
+  z-index:3;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:350px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:100px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:70px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:15px;
+  transition:0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  width:18px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+</style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo" alt="Chill Thrive">
+  </div>
+
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
+
+  <div class="nav-right">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()">×</button>
+            <a href="http://127.0.0.1:5500/Web%20Page/index.html"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/services.html"><i class="fa-solid fa-spa"></i>Services</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
+  
+</div>
+ 
+<main class="page-content">
+<div class="main">
+
+  <!-- LEFT: CALENDAR + PREFERENCES -->
+  <div class="card">
+    <div class="cal-head">
+      <button onclick="changeMonth(-1)">‹</button>
+      <span id="month"></span>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+
+    <div class="calendar" id="calendar"></div>
+
+    <!-- PREFERENCES TAB -->
+    <div class="preferences">
+      <h4>Session Includes</h4>
+      <div id="preferencesList"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: AVAILABILITY -->
+  <div>
+    <div class="avail">
+      <h4 id="serviceTitle"></h4>
+      <div class="times" id="timeSlots">
+      </div>
+    </div>
+
+    <button id="confirm" class="confirm" onclick="goCheckout()">Confirm Slot</button>
+  </div>
+
+</div>
+</main>
+<footer class="grand-footer">
+
+  <hr class="footer-divider">
+
+  <div class="footer-main">
+
+    <div class="footer-col branding-col">
+      <img src="chillthrive.png" alt="Chill Thrive" class="footer-logo">
+      <h4>Chill Thrive</h4>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick links</h4>
+      <a href="founder.html">Founder Story</a>
+      <a href="services.html">Loyalty Program</a>
+      <a href="awareness.html">Science of Recovery</a>
+      <a href="gallery.html">Our Sanctuary</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Professional</h4>
+      <a href="#">Corporate Wellness</a>
+      <a href="#">Athlete Programs</a>
+      <a href="#">Affiliate Partner</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Need Help?</h4>
+      <p class="footer-phone">+91 92270 25160</p>
+      <a href="contact.html">Contact Support</a>
+      <a href="booking.html">Booking FAQ</a>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div>Ice Bath</div>
+    <div>Steam Bath</div>
+    <div>Jacuzzi</div>
+    <div>Sauna</div>
+    <div>Contrast Therapy</div>
+  </div>
+
+  <div class="footer-bottom">
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/chill.thrive" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <div class="legal-links">
+      <a href="tandc.html">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Site Map</a>
+    </div>
+
+    <p class="copyright">
+      Chill Thrive is a part of Wellness Group © 2026
+    </p>
+
+  </div>
+
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyD8_xuBzMXPrhqoIyG8jLRZtWd2q0Lcsrs",
+    authDomain: "chill-thrive-8ec9c.firebaseapp.com",
+    projectId: "chill-thrive-8ec9c",
+    storageBucket: "chill-thrive-8ec9c.firebasestorage.app",
+    messagingSenderId: "620526540978",
+    appId: "1:620526540978:web:803517f456f8c2a15891ab",
+    measurementId: "G-PG8BVMNF9D"
+  };
+
+  window.app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app);
+</script>
+<script type="module">
+  import {
+  collection,
+  getDocs,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const slotsRef = collection(db, "slots");
+
+async function loadSlotsForDate(dateStr) {
+  const slotBox = document.getElementById("timeSlots");
+  slotBox.innerHTML = "";
+
+  // Resolve service safely
+let adminService = serviceMap[selectedService];
+
+// fallback: try direct service name
+if (!adminService) {
+  adminService = selectedService;
+}
+
+if (!adminService) {
+  slotBox.innerHTML = "<p>No service selected</p>";
+  return;
+}
+
+  const q = query(
+    slotsRef,
+    where("service", "==", adminService),
+    where("date", "==", dateStr)
+  );
+
+  const snap = await getDocs(q);   // ✅ MISSING LINE (CRITICAL)
+
+  if (snap.empty) {
+    slotBox.innerHTML =
+      `<p style="color:#888;font-size:14px">No slots available</p>`;
+    return;
+  }
+
+  snap.forEach(docSnap => {
+    const s = docSnap.data();
+
+    const span = document.createElement("span");
+    span.className = "time";
+    span.innerText = `${s.start} - ${s.end}`;
+    span.onclick = (e) => selectTime(span.innerText, e);
+    slotBox.appendChild(span);
+  });
+}
+
+
+    const selectedService = sessionStorage.getItem("serviceName");
+
+if (!selectedService) {
+  document.getElementById("timeSlots").innerHTML =
+    "<p style='color:#888'>No service selected</p>";
+  console.warn("Service missing in sessionStorage");
+}
+
+const serviceMap = {
+  "Ice Bath Therapy": "Ice Bath",
+  "Jacuzzi Therapy": "Jacuzzi",
+  "Steam Bath": "Steam Bath",
+
+  // ✅ combos mapped to admin services
+  "Ice + Steam": "Ice Bath",
+  "Ice + Jacuzzi": "Ice Bath",
+  "Full Recovery Combo": "Ice Bath"
+};
+
+
+const serviceConfig = {
+  "Ice Bath Therapy": {
+    title: "Ice Bath Session — 60 mins",
+    duration: "60 mins",
+    preferences: [
+      "❄ Ice Bath — 60 mins",
+      "🧊 Guided Cold Exposure",
+      "🌬 Breathwork (optional)"
+    ],
+  },
+
+  "Jacuzzi Therapy": {
+    title: "Jacuzzi Therapy — 30 mins",
+    duration: "30 mins",
+    preferences: [
+      "💦 Jacuzzi Hydrotherapy",
+      "🧘 Muscle Relaxation",
+      "🌡 Warm Water Therapy"
+    ],
+  },
+
+  "Steam Bath": {
+    title: "Steam Bath — 30 mins",
+    preferences: [
+      "🌫 Steam Detox",
+      "🫁 Respiratory Relaxation",
+      "💆 Skin Rejuvenation"
+    ],
+  },
+
+  "Ice + Steam": {
+    title: "Ice + Steam Combo — 60 mins",
+    preferences: [
+      "❄ Ice Bath",
+      "🌫 Steam Therapy",
+      "⚡ Contrast Recovery"
+    ],
+ }
+};
+
+document.getElementById("serviceTitle").innerText = serviceConfig[selectedService]?.title || "Select a slot";
+
+
+const prefBox = document.getElementById("preferencesList");
+prefBox.innerHTML = "";
+
+(serviceConfig[selectedService]?.preferences || []).forEach(p => {
+  prefBox.innerHTML += `<div class="pref-item">${p}</div>`;
+});
+
+    function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active")
+}
+
+function closemenu(){
+  document.getElementById('sidebar').classList.remove('active');
+}
+
+let date = new Date();
+let selectedDate = "";
+let selectedTime = "";
+
+const calendar = document.getElementById("calendar");
+const monthLabel = document.getElementById("month");
+const confirmBtn = document.getElementById("confirm");
+
+function renderCalendar(){
+  calendar.innerHTML = "";
+  monthLabel.innerText = date.toLocaleString("default",{
+    month:"long",
+    year:"numeric"
+  });
+
+  // Week labels
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+    calendar.innerHTML += `<div>${d}</div>`;
+  });
+
+  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  for(let i=0;i<firstDay;i++) calendar.innerHTML += "<div></div>";
+
+  const daysInMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+
+  // Today's date (without time)
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  for(let d=1; d<=daysInMonth; d++){
+    const el = document.createElement("div");
+    el.innerText = d;
+    el.className = "day";
+
+    const currentDate = new Date(date.getFullYear(), date.getMonth(), d);
+    currentDate.setHours(0,0,0,0);
+
+    // 🔴 Disable past dates
+    if(currentDate < today){
+      el.classList.add("disabled");
+    } 
+    // 🟢 Enable today & future dates
+    else {
+      el.onclick = () => {
+  document.querySelectorAll(".day").forEach(x => x.classList.remove("selected"));
+  el.classList.add("selected");
+
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(d).padStart(2, "0");
+
+  selectedDate = `${yyyy}-${mm}-${dd}`;
+  loadSlotsForDate(selectedDate);
+};
+
+    }
+    calendar.appendChild(el);
+  }
+}
+
+
+window.changeMonth = function(n){
+  date.setMonth(date.getMonth() + n);
+  renderCalendar();
+};
+
+
+function selectTime(time, e){
+  document.querySelectorAll(".time").forEach(t=>t.classList.remove("selected"));
+  e.target.classList.add("selected");
+  selectedTime = time;
+  confirmBtn.classList.add("active");
+  confirmBtn.disabled = false;
+}
+
+window.goCheckout = function(){
+  if(!selectedDate || !selectedTime){
+    alert("Please select date and time");
+    return;
+  }
+
+  localStorage.setItem("service", selectedService);
+  localStorage.setItem("date", selectedDate);
+  localStorage.setItem("time", selectedTime);
+
+  window.location.href = "http://127.0.0.1:5500/Web%20Page/booking2.html";
+};
+
+
+renderCalendar();
+</script>
+<script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+const page = location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  if(link.getAttribute("href") === page){
+    link.classList.add("active");
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Founder | Chill Thrive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --nav:#0F172A;
+  --nav-soft:#14213D;
+  --gold:#C9A24D;
+  --gold-soft:#E6D3A3;
+  --bg:#F4F9FF;
+  --text:#0B1F3B;
+  --muted:#5C6B82;
+  --card:#FFFFFF;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-top:50px;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 50px;
+  background:linear-gradient(90deg,var(--nav),var(--nav-soft));
+  border-bottom:1px solid rgba(201,162,77,.25);
+  z-index:1000;
+}
+.nav-left img{height:46px}
+.nav-center{text-align:center}
+.nav-center h1{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  color:var(--gold);
+}
+.nav-center span{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#EAEAEA;
+}
+.menu{font-size:28px;color:var(--gold);cursor:pointer}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;right:-340px;
+  width:340px;height:100%;
+  background:linear-gradient(180deg,var(--nav),#08101E);
+  padding:45px;
+  transition:.45s ease;
+  z-index:1200;
+}
+.sidebar.active{right:0}
+.sidebar a{
+  display:block;
+  margin:28px 0;
+  font-size:18px;
+  color:white;
+  text-decoration:none;
+}
+.close-btn{font-size:36px;color:white;text-align:right;cursor:pointer}
+
+/* HERO */
+.hero{
+  background:
+    linear-gradient(rgba(15,23,42,.85),rgba(15,23,42,.85)),
+    url('https://i.pinimg.com/1200x/4b/3b/86/4b3b86adf8135fda2a53cf64637f3f93.jpg');
+  background-size:cover;
+  background-position:center;
+  color:white;
+  text-align:center;
+  padding:100px 20px 180px;
+}
+.hero h2{
+  font-family:'Playfair Display',serif;
+  font-size:50px;
+  margin-bottom:18px;
+}
+.hero p{
+  font-size:19px;
+  opacity:.9;
+  max-width:780px;
+  margin:auto;
+}
+
+/* REVEAL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:1.1s cubic-bezier(.19,1,.22,1);
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FOUNDER CARD */
+.founder-section{
+  max-width:1100px;
+  margin:-120px auto 140px;
+  background:white;
+  border-radius:24px;
+  box-shadow:0 45px 90px rgba(15,23,42,.18);
+  display:flex;
+  flex-wrap:wrap;
+  overflow:hidden;
+}
+.founder-image{flex:1 1 420px;min-height:520px}
+.founder-image img{width:100%;height:100%;object-fit:cover}
+.founder-content{flex:1 1 520px;padding:75px}
+.founder-content h3{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+}
+.founder-role{
+  font-size:13px;
+  letter-spacing:2px;
+  color:var(--gold);
+  margin:12px 0 30px;
+}
+.founder-content p{margin-bottom:22px;color:#444}
+
+/* JOURNEY */
+.journey{
+  max-width:1000px;
+  margin:auto;
+  padding:0 20px 140px;
+}
+.journey h4{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  text-align:center;
+  margin-bottom:70px;
+}
+.journey-step{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:30px;
+  margin-bottom:60px;
+}
+.journey-step span{
+  font-size:14px;
+  letter-spacing:2px;
+  color:var(--gold);
+}
+.journey-step h5{
+  font-size:22px;
+  margin-bottom:12px;
+}
+.journey-step p{color:var(--muted)}
+
+/* QUOTE */
+.quotes{
+  max-width:900px;
+  margin:auto;
+  padding:120px 20px;
+  text-align:center;
+}
+.quote-box{
+  padding:65px 55px;
+  background:white;
+  border-radius:22px;
+  box-shadow:0 30px 70px rgba(0,0,0,.12);
+}
+.quote{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+}
+.quote-author{
+  margin-top:25px;
+  letter-spacing:2px;
+  font-size:13px;
+  color:var(--gold);
+}
+
+/* ACHIEVEMENTS */
+.achievements{
+  background:linear-gradient(180deg,#0F172A,#0B1220);
+  color:white;
+  padding:120px 20px;
+}
+.achievements h4{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  text-align:center;
+  color:var(--gold);
+  margin-bottom:70px;
+}
+.achievement-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:35px;
+}
+.achievement{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,162,77,.25);
+  border-radius:18px;
+  padding:40px;
+}
+.achievement h5{
+  font-size:32px;
+  color:var(--gold-soft);
+}
+.achievement p{
+  font-size:15px;
+  color:#D3D7E3;
+}
+
+/* FUTURE */
+.future{
+  max-width:900px;
+  margin:140px auto;
+  padding:0 20px;
+  text-align:center;
+}
+.future h4{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  margin-bottom:25px;
+}
+.future p{
+  font-size:17px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+/* FOOTER */
+footer{
+  background:#0B1220;
+  color:#C9D3EA;
+  text-align:center;
+  padding:30px;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h2{font-size:36px}
+  .founder-content{padding:45px}
+  .journey-step{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-left"><img src="cropedlogo.png"></div>
+  <div class="nav-center">
+    <h1>Chill Thrive</h1>
+    <span>ICE BATH CENTER</span>
+  </div>
+  <div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+
+<div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">×</div>
+  <a href="index.html">Home</a>
+  <a href="#">Services</a>
+  <a href="#">Our Story</a>
+  <a href="#">The Founder</a>
+  <a href="#">Contact</a>
+</div>
+
+<section class="hero reveal">
+  <h2>The Vision Behind Chill Thrive</h2>
+  <p>Recovery is not rest — it is preparation.</p>
+</section>
+
+<section class="founder-section reveal">
+  <div class="founder-image">
+    <img src="https://i.pinimg.com/736x/7e/46/c6/7e46c6d2798eff446b365c5246f4c9ca.jpg">
+  </div>
+  <div class="founder-content">
+    <h3>Alex Rivera</h3>
+    <div class="founder-role">Founder & Chief Visionary</div>
+    <p>Alex founded Chill Thrive after years in high-performance environments where burnout was normalized and recovery was misunderstood.</p>
+    <p>What began as a personal discipline evolved into a system — and eventually, a space for others to reset, rebuild, and thrive.</p>
+  </div>
+</section>
+
+<section class="journey">
+  <h4 class="reveal">Founder’s Journey</h4>
+
+  <div class="journey-step reveal">
+    <span>HOW IT STARTED</span>
+    <div>
+      <h5>Searching for Sustainable Strength</h5>
+      <p>Cold exposure entered Alex’s life during periods of physical exhaustion and mental overload. What started as discomfort became clarity.</p>
+    </div>
+  </div>
+
+  <div class="journey-step reveal">
+    <span>HOW IT EVOLVED</span>
+    <div>
+      <h5>From Private Protocols to Public Space</h5>
+      <p>Friends, athletes, and founders sought guidance. Structured recovery systems replaced guesswork — results followed.</p>
+    </div>
+  </div>
+
+  <div class="journey-step reveal">
+    <span>HOW IT’S GOING</span>
+    <div>
+      <h5>Chill Thrive Today</h5>
+      <p>A premium recovery studio designed to help people slow down, reset their nervous systems, and perform better — calmly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="quotes reveal">
+  <div class="quote-box">
+    <div class="quote">
+      “Stillness is not an escape.  
+      It is the foundation of resilience.”
+    </div>
+    <div class="quote-author">— ALEX RIVERA</div>
+  </div>
+</section>
+
+<section class="achievements">
+  <h4 class="reveal">Milestones & Impact</h4>
+  <div class="achievement-grid">
+    <div class="achievement reveal">
+      <h5>10+ Years</h5>
+      <p>Experience in recovery and performance optimization</p>
+    </div>
+    <div class="achievement reveal">
+      <h5>1,000+</h5>
+      <p>Clients guided through structured cold therapy</p>
+    </div>
+    <div class="achievement reveal">
+      <h5>Elite Network</h5>
+      <p>Athletes, founders, and high performers</p>
+    </div>
+  </div>
+</section>
+
+<section class="future reveal">
+  <h4>The Road Ahead</h4>
+  <p>Chill Thrive aims to expand globally — building recovery spaces where calm, discipline, and science coexist.</p>
+  <p>The future is not louder, faster, or harder.  
+     It is intentional.</p>
+</section>
+
+<footer>
+  © 2025 Chill Thrive Ice Bath Center. All rights reserved.
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-80){
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

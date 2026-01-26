@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chill Thrive | Luxury Wellness & Recovery</title>
+    <link rel="preload" as="image" href="steam bath.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="ice bath.jpg" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+ integrity="sha512-..."
+ crossorigin="anonymous"
+ referrerpolicy="no-referrer">
+
+    <style>
+        :root {
+            --primary-blue: #1A1A2E; 
+            --accent-gold: #EFC07B;
+            --deep-navy: #16213E;
+            --text-light: #F7FBFA;
+            --text-dark: #333333;
+            --white: #FFFFFF;
+        }
+
+
+        /* --- Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+
+        body{
+  font-family:'Inter', sans-serif;
+  color:#F7FBFA;
+  background:#020617;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary-blue); }
+
+        /* Luxurious Animated Preloader */
+        /* edited */
+
+        *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+  #bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.5);
+    pointer-events: none;
+} 
+
+/* ================= BODY ================= */
+/* body{
+  background:#020617;
+  min-height:100vh;
+  overflow-x:hidden;
+} */
+
+/* ================= LOADER ================= */
+.loader{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle at top,#0b1d2d,#020617 70%);
+  z-index:9999;
+}
+
+/* ================= CONTENT ================= */
+.loader-content{
+  position:relative;
+  text-align:center;
+}
+
+/* ================= LOGO ================= */
+.logo{
+  width:180px;
+  opacity:0;
+  transform:scale(0.6);
+  animation:logoIn 2s ease forwards;
+}
+
+.logo img{
+  width:100%;
+  filter:drop-shadow(0 0 30px rgba(125,211,252,.4));
+}
+
+
+/* ================= PARTICLES ================= */
+.particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#7dd3fc;
+  border-radius:50%;
+  opacity:.7;
+  animation:float 6s linear infinite;
+}
+
+/* ================= TEXT ================= */
+.title{
+  margin-top:20px;
+  font-size:26px;
+  letter-spacing:2px;
+  color:#7dd3fc;
+  opacity:0;
+  animation:textIn 1.5s ease forwards;
+  animation-delay:1.8s;
+}
+
+.subtitle{
+  margin-top:6px;
+  font-size:13px;
+  letter-spacing:3px;
+  color:#cbd5f5;
+  opacity:0;
+  animation:textIn 1.5s ease forwards;
+  animation-delay:2.2s;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes logoIn{
+  to{opacity:1; transform:scale(1);}
+}
+
+
+
+@keyframes textIn{
+  to{opacity:1;}
+}
+
+@keyframes float{
+  from{transform:translateY(0); opacity:.8;}
+  to{transform:translateY(-120px); opacity:0;}
+}
+
+/* ================= FADE OUT ================= */
+.loader.hide{
+  animation:fadeOut 1s ease forwards;
+}
+
+@keyframes fadeOut{
+  to{opacity:0; visibility:hidden;}
+}
+/* EDIT END */
+
+    
+
+/* ================= PREMIUM SOLID SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:360px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:110px 40px;
+  z-index:3000;
+
+  transition:0.55s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.sidebar.active{
+  right:0;
+}
+
+/* Close button */
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:70px;
+
+  font-size:32px;
+  background:none;
+  border:none;
+  cursor:pointer;
+
+  color:#FFFFFF;
+  transition:0.3s ease;
+}
+
+.sidebar-close:hover{
+  color:#EFC07B;
+  transform:rotate(90deg);
+}
+
+/* Menu links */
+.sidebar a{
+  display:block;
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+
+  color:#FFFFFF;
+  text-decoration:none;
+
+  margin-bottom:10px;
+  letter-spacing:0.5px;
+
+  transition:0.35s ease;
+}
+
+.sidebar a:hover{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+/* Active page hint (optional) */
+.sidebar a.active{
+  color:#EFC07B;
+}
+
+/* ================= SIDEBAR ICON STYLE ================= */
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  color:rgba(255,255,255,0.75);
+  transition:0.3s ease;
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar a:hover i,
+.sidebar a.active i{
+  color:#EFC07B;
+}
+
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+
+
+/* Mobile full-width */
+@media(max-width:768px){
+  .sidebar{
+    width:100%;
+    padding:100px 30px;
+  }
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:2500;
+  display:none;
+}
+
+.overlay.active{
+  display:block;
+}
+
+
+/* ================= PREMIUM SOLID NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:80px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+
+  z-index:1000;
+  transition:background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Scroll state */
+.navbar.scrolled{
+  background:#0F172A;
+  box-shadow:0 12px 35px rgba(0,0,0,0.45);
+}
+
+/* Logo */
+.nav-logo{
+  height:68px;
+  object-fit:contain;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6));
+}
+
+/* Menu icon */
+.menu-toggle{
+  background:none;
+  border:none;
+  color:#EFC07B;
+  font-size:30px;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.menu-toggle:hover{
+  color:#EFC07B;
+  transform:scale(1.08);
+}
+
+/* Optional luxury underline */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.6),
+    transparent
+  );
+}
+
+/* Mobile refinement */
+@media(max-width:768px){
+  .navbar{
+    height:80px;
+    padding:0 20px;
+  }
+  .nav-logo{height:58px;}
+}
+
+/* ================= NAV CENTER BRAND ================= */
+
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none; /* keeps clicks working on menu */
+}
+
+.brand-main{
+  display:block;
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#FFFFFF;
+}
+
+.brand-sub{
+  display:block;
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+  margin-top:2px;
+}
+
+/* Hide center title on very small screens */
+@media(max-width:768px){
+  .nav-center{display:none;}
+}
+
+        /* --- Hero Slideshow --- */
+        /* edited*/
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            padding-top: 90px;
+        }
+        .slideshow-container {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: var(--primary-blue);
+        }
+
+        .slideshow-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 26, 46, 0.55) 0%,
+                rgba(26, 26, 46, 0.25) 50%,
+                rgba(26, 26, 46, 0.75) 100%
+            );
+            z-index: 1;
+        } /* edited */
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.05) translateX(-10px);
+        }
+
+        .slide.active { 
+            opacity: 1; 
+            animation: premiumPan 8s linear forwards;
+        }
+        
+        @keyframes premiumPan {
+            0% { transform: scale(1.05) translateX(-10px); }
+            100% { transform: scale(1.1) translateX(10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: var(--white);
+            padding: 0 20px;
+            max-width: 900px;
+        }
+        .hero-content p.welcome-text { font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--accent-gold); font-weight: 600; }
+        .hero-content h1 { color: var(--white); font-size: clamp(2.8rem, 9vw, 5rem); margin-bottom: 2rem; line-height: 1.1; font-weight: 700; }
+        .hero-content .main-description { font-size: clamp(1.1rem, 3vw, 1.6rem); color: #fff; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        .hero-content .sub-description { font-size: clamp(0.9rem, 2vw, 1.1rem); color: rgba(255, 255, 255, 0.9); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+
+        /* --- Buttons --- */
+        .btn {
+            padding: 16px 40px; background: var(--accent-gold); color: var(--primary-blue);
+            text-decoration: none; font-weight: 600; border-radius: 4px; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1.5px; display: inline-block;
+            border: 2px solid var(--accent-gold); font-size: 0.9rem;
+        }
+        .btn:hover { background: var(--white); border-color: var(--white); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .btn-outline { background: transparent; color: white; border: 2px solid var(--white); margin-left: 15px; }
+        .btn-outline:hover { background: var(--white); color: var(--primary-blue); }
+
+        
+
+
+         .services-section {
+  padding: 110px 40px;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.services-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  color: #c6a76e;
+}
+
+.services-header p {
+  margin-top: 14px;
+  opacity: 0.8;
+}
+
+/* Container */
+.services-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Buttons */
+.slider-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(198,167,110,0.4);
+  color: #c6a76e;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: rgba(198,167,110,0.18);
+  transform: scale(1.1);
+}
+
+/* Viewport */
+.services-viewport {
+  flex: 1;
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Wrapper */
+.services-wrapper {
+  display: flex;
+  gap: 32px;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* Cards */
+.service-card {
+  min-width: 360px;
+  min-height: 380px;
+  padding: 42px 34px;
+  border-radius: 20px;
+  background: linear-gradient(
+    160deg,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.02)
+  );
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(198,167,110,0.25);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+  transition: all 0.45s ease;
+  opacity: 0.55;
+  transform: scale(0.92);
+}
+
+/* Center Highlight */
+.service-card.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 35px 80px rgba(0,0,0,0.6);
+}
+
+.service-card h3 {
+  color: #c6a76e;
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.slider-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transition: all 0.3s ease;
+}
+
+.slider-dots span.active {
+  background: #c6a76e;
+  transform: scale(1.4);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .slider-btn {
+    display: none;
+  }
+}
+
+
+        /* --- Sections --- */
+       
+               .benefits-section {
+            padding: 30px 6%;
+            /* background-color: #FFFFFF; */
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(6px);
+            text-align: center;
+        }
+        .benefits-header { margin-bottom: 60px; }
+        .benefits-header .subtitle {
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .benefits-header h2 { font-size: 3rem; color: var(--primary-blue); }
+        .benefits-divider {
+            width: 80px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 20px auto;
+        }
+        .benefits-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .benefits-image-wrapper { flex: 1; position: relative; }
+        .benefits-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 20px 20px 0px var(--accent-gold);
+            animation: slowFloat 6s ease-in-out infinite;
+        }
+        .benefits-content { flex: 1.2; }
+        @keyframes slowFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .benefit-card {
+            padding: 40px 30px;
+            background: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            transition: 0.4s ease;
+            text-align: left;
+            position: relative;
+        }
+        .benefit-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent-gold); }
+        .benefit-number { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(239, 192, 123, 0.2); position: absolute; top: 20px; right: 30px; font-weight: 700; }
+        .benefit-card h3 { font-size: 1.5rem; margin-bottom: 15px; position: relative; z-index: 1; }
+        .benefit-card p { font-size: 0.95rem; color: #666; line-height: 1.7; }
+        .benefits-cta { margin-top: 40px; padding-top: 40px; border-top: 1px solid #eee; }
+        .benefits-cta p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--primary-blue); margin-bottom: 25px; }
+
+        /* --- Section Container Reset --- */
+        .section-container { padding: 100px 6%; }
+
+        /* --- NEW ENHANCED GALLERY CSS (Isolated) --- */
+        .gallery-premium {
+            /* background-color: #fff; */
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(6px);
+            padding: 120px 6%;
+        }
+        .gallery-intro { text-align: center; margin-bottom: 60px; }
+        .gallery-intro .gold-tag {
+            color: var(--accent-gold); letter-spacing: 4px; text-transform: uppercase;
+            font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 15px;
+        }
+        .gallery-intro h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 20px; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-item-enhanced { position: relative; overflow: hidden; border-radius: 4px; cursor: pointer; }
+        .gallery-item-enhanced.large { grid-column: span 2; grid-row: span 2; }
+        .gallery-item-enhanced.tall { grid-row: span 2; }
+        .gallery-item-enhanced img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .gallery-overlay {
+            position: absolute; inset: 0; background: rgba(26, 26, 46, 0.4);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.5s ease; border: 0px solid var(--accent-gold);
+        }
+        .gallery-item-enhanced:hover img { transform: scale(1.1); }
+        .gallery-item-enhanced:hover .gallery-overlay { opacity: 1; border: 15px solid rgba(239, 192, 123, 0.1); }
+        .overlay-content { text-align: center; transform: translateY(20px); transition: 0.5s ease; }
+        .gallery-item-enhanced:hover .overlay-content { transform: translateY(0); }
+        .overlay-content span { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.2rem; letter-spacing: 2px; }
+        .gallery-footer { text-align: center; margin-top: 50px; }
+        .view-all-link {
+            color: var(--primary-blue); text-decoration: none; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; font-size: 0.85rem; border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 5px; transition: 0.3s;
+        }
+        .view-all-link:hover { color: var(--accent-gold); letter-spacing: 4px; }
+
+        /* --- Location & Contact Section Styles --- */
+        .contact-premium {
+            background-color: #fcfcfc;
+            border-top: 1px solid #eee;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .contact-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .contact-title .ampersand {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+        .location-decorative-line {
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+        .location-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 400px;
+        }
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .detail-item {
+            display: flex;
+            gap: 25px;
+        }
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f4f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            flex-shrink: 0;
+            transition: 0.3s;
+        }
+        .detail-item:hover .detail-icon {
+            background: var(--primary-blue);
+            color: var(--accent-gold);
+        }
+        .detail-text h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .detail-text p, .detail-text a {
+            font-size: 1.05rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        .contact-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 0.9rem !important;
+            color: var(--accent-gold) !important;
+            transition: 0.3s;
+        }
+        .map-link:hover { letter-spacing: 1px; }
+
+        /* --- Map Section Styles --- */
+
+           /* MAP RIGHT LAYOUT */
+.contact-grid.map-right {
+  grid-template-columns: 1fr 1.2fr;
+  align-items: stretch;
+}
+
+/* Map Styling */
+.right-map {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+}
+
+.right-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 992px) {
+  .contact-grid.map-right {
+    grid-template-columns: 1fr;
+  }
+
+  .right-map iframe {
+    min-height: 320px;
+  }
+}
+
+
+       /* 
+
+        .grand-footer { background:#0F172A; color: var(--white); padding: 80px 6% 40px; font-family: 'Inter', sans-serif; }
+        .footer-top { text-align: center; margin-bottom: 60px; }
+        .footer-top h3 { color: var(--white); font-size: 2rem; margin-bottom: 10px; }
+        .footer-top p { opacity: 0.7; margin-bottom: 30px; }
+        .footer-form { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .footer-form input { background: transparent; border: none; color: white; width: 100%; padding: 10px; font-family: 'Inter', sans-serif; }
+        .footer-form input:focus { outline: none; }
+        .footer-form button { background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 20px; cursor: pointer; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: 0.3s; }
+        .footer-form button:hover { background: var(--accent-gold); color: var(--primary-blue); }
+        .footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 60px; }
+        .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+        .footer-logo { height: 60px; margin-bottom: 20px; }
+        .branding-col p { opacity: 0.6; font-size: 0.9rem; max-width: 250px; color: var(--white); }
+        .footer-col h4 { color: var(--accent-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 25px; }
+        .footer-col a { display: block; color: white; text-decoration: none; opacity: 0.7; margin-bottom: 12px; font-size: 0.95rem; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; color: var(--accent-gold); transform: translateX(5px); }
+        .footer-phone { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; color: var(--white); }
+        .brand-strip { display: flex; justify-content: space-between; align-items: center; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 40px; opacity: 0.5; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .social-links a { color: white; text-decoration: none; margin-right: 20px; font-weight: 600; font-size: 0.8rem; }
+        .legal-links a { font-size: 0.75rem; color: white; opacity: 0.5; text-decoration: none; margin-right: 15px; }
+        .copyright { font-size: 0.75rem; opacity: 0.4; width: 100%; margin-top: 20px; text-align: center; color: var(--white); } */
+
+        .grand-footer {
+    background: #0F172A;
+    color: var(--white);
+    padding: 50px 6% 25px; /* reduced */
+    font-family: 'Inter', sans-serif;
+}
+
+/* ---------- TOP SECTION ---------- */
+.footer-top {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.footer-top h3 {
+    color: var(--white);
+    font-size: 1.6rem; /* reduced */
+    margin-bottom: 6px;
+}
+
+.footer-top p {
+    opacity: 0.65;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.footer-form {
+    display: flex;
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 6px;
+}
+
+.footer-form input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.footer-form input:focus {
+    outline: none;
+}
+
+.footer-form button {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    padding: 4px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+.footer-form button:hover {
+    background: var(--accent-gold);
+    color: var(--primary-blue);
+}
+
+/* ---------- DIVIDER ---------- */
+.footer-divider {
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 35px;
+}
+
+/* ---------- MAIN FOOTER ---------- */
+.footer-main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 30px; /* reduced */
+    margin-bottom: 45px;
+}
+
+.footer-logo {
+    height: 45px; /* smaller logo */
+    margin-bottom: 12px;
+}
+
+.branding-col p {
+    opacity: 0.6;
+    font-size: 0.85rem;
+    max-width: 230px;
+    color: var(--white);
+}
+
+/* ---------- COLUMNS ---------- */
+.footer-col h4 {
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.footer-col a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    opacity: 0.65;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    opacity: 1;
+    color: var(--accent-gold);
+    transform: translateX(4px);
+}
+
+.footer-phone {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--white);
+}
+
+/* ---------- BRAND STRIP ---------- */
+.brand-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0; /* reduced height */
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 25px;
+    opacity: 0.45;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* ---------- BOTTOM ---------- */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-links a {
+   
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.legal-links a {
+    font-size: 0.7rem;
+    color: white;
+    opacity: 0.5;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+/* ---------- COPYRIGHT ---------- */
+.copyright {
+    font-size: 0.7rem;
+    opacity: 0.4;
+    width: 100%;
+    margin-top: 15px;
+    text-align: center;
+    color: var(--white);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .brand-strip {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top h3 {
+        font-size: 1.4rem;
+    }
+}
+
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            .contact-title { font-size: 2.8rem; }
+            .footer-main { grid-template-columns: 1fr 1fr; }
+            .brand-strip { display: none; }
+            .benefits-container { flex-direction: column; text-align: center; }
+            .benefit-card { text-align: left; }
+            /* Gallery Tablet */
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .gallery-item-enhanced { height: 300px; }
+            .gallery-item-enhanced.large, .gallery-item-enhanced.tall { grid-column: span 1; grid-row: span 1; }
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .section-container, .benefits-section { padding: 60px 20px; }
+            .sidebar { width: 100%; }
+            .service-card { min-width: 85vw; height: 500px; padding: 30px; }
+            .benefits-header h2 { font-size: 2.2rem; }
+        }
+        @media (max-width: 600px) {
+            .contact-methods { grid-template-columns: 1fr; }
+            .footer-main { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .bento-grid { grid-template-columns: 1fr; }
+        }
+
+        
+
+
+        .stats-section {
+  padding: 20px 10px;
+  background: #0F172A;
+  color: #fff;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.stat-card {
+  padding: 40px 20px;
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: 600;
+  color: #c6a76e;
+  display: block;
+}
+
+.stat-label {
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================= REVIEW SLIDER ================= */
+.reviews-section {
+  padding: 120px 6%;
+  background: #0F172A;
+  overflow: hidden;
+}
+
+.reviews-slider {
+  overflow: hidden;
+}
+
+.reviews-wrapper {
+  display: flex;
+  gap: 32px;
+  transition: transform 0.6s ease;
+}
+
+.review-card {
+  min-width: 360px;
+  padding: 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  opacity: 0.4;
+  transform: scale(0.92);
+  transition: all 0.5s ease;
+}
+
+.review-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.review-card p {
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.review-card h4 {
+  margin-top: 24px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.review-card span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Dots */
+.slider-dots {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.slider-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.slider-dots span.active {
+  background: #fff;
+}
+
+/* ================= FOUNDER ================= */
+.founder-section {
+  padding: 140px 6%;
+  background: #0b1d2d; /* SOLID BACKGROUND */
+}
+
+.founder-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.founder-image img {
+  width: 320px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.founder-content h3 {
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+}
+
+.founder-content h2 {
+  color: #fff;
+  font-size: 3rem;
+  margin: 12px 0 20px;
+}
+
+.founder-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .founder-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+
+        /* Text on dark backgrounds */
+.hero h1,
+.hero h2,
+.hero h3,
+.hero p,
+.navbar,
+.sidebar,
+.brand-main,
+.brand-sub {
+  color: #FFFFFF;
+}
+
+
+.welcome-text,
+.gold-tag,
+.subtitle {
+  color: var(--accent-gold) !important;
+}
+
+
+.service-card h3,
+.service-card p {
+  color: #FFFFFF;
+}
+
+.location-subtitle {
+  margin-bottom: 40px; /* creates space below subtitle */
+}
+
+.detail-text h3 {
+  margin-top: 0;
+}
+
+/* Luxury Map Frame */
+.right-map {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 2px;
+  background: linear-gradient(
+    120deg,
+    #c6a76e,
+    #f5e3b3,
+    #c6a76e
+  );
+  background-size: 300% 300%;
+  animation: goldFlow 6s ease infinite;
+}
+
+/* Inner map */
+.right-map iframe {
+  border-radius: 12px;
+  background: #000;
+}
+
+/* Hover Glow */
+.right-map:hover {
+  box-shadow:
+    0 0 25px rgba(198,167,110,0.45),
+    0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* Gold animation */
+@keyframes goldFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+    </style>
+       <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>.social-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.social-icon{
+  font-size:28px;
+  cursor:pointer;
+  transition:transform 0.25s ease, color 0.25s ease;
+}
+
+.social-icon:hover{
+  transform:scale(1.15);
+}
+
+/* Brand colors */
+.instagram{ color:#E1306C; }
+.instagram:hover{ color:#C13584; }
+
+.facebook{ color:#1877F2; }
+.facebook:hover{ color:#145DBF; }
+
+.x{ color:white; }
+.x:hover{ color:#444; }
+
+</style>
+</head>
+<body>
+
+
+     <video autoplay muted loop playsinline id="bg-video">
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video> 
+    
+
+    <!-- change start-->
+
+       <!-- ================= LOADER ================= -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+
+    <!-- PARTICLES -->
+    <div class="particle" style="left:-40px; top:40px; animation-delay:0s;"></div>
+    <div class="particle" style="left:200px; top:20px; animation-delay:1s;"></div>
+    <div class="particle" style="left:80px; top:-30px; animation-delay:2s;"></div>
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="chillthrive.png" alt="Chill Thrive">
+    </div>
+
+
+    
+
+  </div>
+</div>
+
+<!-- ================= MAIN PAGE ================= -->
+
+
+    <header>
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="nav-left">
+                <img src="chillthrive.png" alt="Chill Thrive Luxury Wellness" class="nav-logo">
+            </div>
+
+            <!-- CENTER BRAND TITLE -->
+  <div class="nav-center">
+    <span class="brand-main">CHILL THRIVE</span>
+    <span class="brand-sub">Ice Bath Center</span>
+  </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu" aria-expanded="false" id="menuBtn">☰</button>
+        </nav>
+    </header>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    
+    <div class="sidebar" id="sidebar" role="dialog" aria-modal="true">
+        <button class="sidebar-close" onclick="toggleMenu()" aria-label="Close Menu">×</button>
+        <div style="clear:both;">
+            <a href="http://127.0.0.1:5500/Web%20Page/index.html"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/services.html"><i class="fa-solid fa-spa"></i>Services</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="slideshow-container">
+                <div class="slide active" style="background-image: url('https://i.pinimg.com/1200x/e6/cb/bb/e6cbbbef6a392c83f215ee7cab66b2e8.jpg');"></div>
+                <div class="slide" style="background-image: url('https://i.pinimg.com/736x/e2/83/e5/e283e569bb537f3cd1048f6dd2da27f5.jpg');"></div>
+                <div class="slide" style="background-image: url('https://i.pinimg.com/1200x/09/88/eb/0988ebd65415de96906ebfc167658ce3.jpg');"></div>
+            </div>
+            
+            <div class="hero-content">
+                <p class="welcome-text">Welcome to Chill Thrive</p>
+                <h1>Recharge your body.<br>Reboot your mind.</h1>
+                 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+                    <a href="services.html" class="btn">Explore Services</a>
+                    <a href="booking.html" class="btn btn-outline">Book Session</a>
+                </div>
+                <br>
+                <p class="main-description">Discover the perfect blend of cold therapy and deep recovery.</p>
+                <p class="sub-description">Unlock the science-backed benefits of ice baths - reduce inflammation, sharpen focus, and elevate your mood.</p>
+             
+            </div>
+        </section>
+
+        <section class="services-section" id="services">
+  <div class="services-header">
+    <h2>Our Signature Experiences</h2>
+    <p>Crafted for recovery, balance, and elevated performance</p>
+  </div>
+
+  <div class="services-container">
+
+    <button class="slider-btn left" onclick="moveSlide(-1)">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="services-viewport">
+      <div class="services-wrapper" id="servicesWrapper">
+
+        <div class="service-card">
+          <h3>Ice Bath Therapy</h3>
+          <p>Enhance recovery, reduce inflammation, and build resilience.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Steam Therapy</h3>
+          <p>Deep detoxification and complete muscle relaxation.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Contrast Therapy</h3>
+          <p>Hot & cold cycles to maximize physical performance.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Breathwork Sessions</h3>
+          <p>Restore calm, focus, and nervous system balance.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="slider-btn right" onclick="moveSlide(1)">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Progress Dots -->
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+
+
+        <section class="benefits-section">
+            <div class="benefits-header">
+                <p class="subtitle">The Science of Resilience</p>
+                <h2>Why Your Body Needs the Chill</h2>
+                <div class="benefits-divider"></div>
+            </div>
+            <div class="benefits-container">
+                <div class="benefits-image-wrapper">
+                    <img src="https://i.pinimg.com/1200x/b1/c2/71/b1c271f8b4623c2f645fe65387f60b77.jpg" alt="Luxury Wellness Experience">
+                </div>
+                <div class="benefits-content">
+                    <div class="benefits-grid" style="grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 0;">
+                        <div class="benefit-card">
+                            <span class="benefit-number">01</span>
+                            <h3>Rapid Recovery</h3>
+                            <p>Cold immersion constricts blood vessels, flushing out waste after exertion.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-number">02</span>
+                            <h3>Mental Fortitude</h3>
+                            <p>Triggers norepinephrine, sharpening focus and building a stress-proof mindset.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-number">03</span>
+                            <h3>Immune Support</h3>
+                            <p>Stimulates white blood cell production, strengthening natural defenses.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-number">04</span>
+                            <h3>Circadian Balance</h3>
+                            <p>Regulates core temperature for deeper, restorative sleep cycles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="benefits-cta">
+                <p>Ready to transform your recovery? Your first breath of restoration starts here.</p>
+                <a href="booking.html" class="btn">Reserve Your Session</a>
+            </div>
+        </section>
+
+          <!-- ================= REVIEW SLIDER ================= -->
+<section class="reviews-section">
+  <h2 class="section-title">Student Reviews</h2>
+
+  <div class="reviews-slider">
+    <div class="reviews-wrapper" id="reviewsWrapper">
+
+      <div class="review-card active">
+        <p>“This platform reduced my stress and helped me focus better.”</p>
+        <h4>Aarav Mehta</h4>
+        <span>Engineering Student</span>
+      </div>
+
+      <div class="review-card">
+        <p>“Finally something clean, calm and student-friendly.”</p>
+        <h4>Sneha Patel</h4>
+        <span>Medical Aspirant</span>
+      </div>
+
+      <div class="review-card">
+        <p>“Feels premium and motivating. Not distracting at all.”</p>
+        <h4>Rohan Verma</h4>
+        <span>Commerce Student</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="slider-dots" id="reviewDots"></div>
+</section>
+
+
+            <section class="stats-section">
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="2500">0</span>
+      <p class="stat-label">Happy Guests</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="4.9">0</span>
+      <p class="stat-label">Average Rating</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="620">0</span>
+      <p class="stat-label">Regular Members</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="85">0</span>
+      <p class="stat-label">Wellness Events</p>
+    </div>
+
+  </div>
+</section>
+
+        <section class="gallery-premium">
+            <div class="gallery-intro">
+                <span class="gold-tag">A Visual Journey</span>
+                <h2>The Sanctuary Gallery</h2>
+                <div class="benefits-divider"></div>
+            </div>
+            <div class="bento-grid">
+                <div class="gallery-item-enhanced large">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80" alt="Spa Interior Design">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content"><span>Main Suite</span></div>
+                    </div>
+                </div>
+                <div class="gallery-item-enhanced tall">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80" alt="Treatment Room Atmosphere">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content"><span>Atmosphere</span></div>
+                    </div>
+                </div>
+                <div class="gallery-item-enhanced">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80" alt="Luxury Wellness Equipment">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content"><span>Precision</span></div>
+                    </div>
+                </div>
+                <div class="gallery-item-enhanced">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80" alt="Steam Room Detail">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content"><span>Detox</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-footer">
+                <a href="gallery.html" class="view-all-link">Experience the Full Gallery</a>
+            </div>
+        </section>
+
+            <!-- <section class="stats-section">
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="2500">0</span>
+      <p class="stat-label">Happy Guests</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="4.9">0</span>
+      <p class="stat-label">Average Rating</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="620">0</span>
+      <p class="stat-label">Regular Members</p>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number" data-target="85">0</span>
+      <p class="stat-label">Wellness Events</p>
+    </div>
+
+  </div>
+</section> -->
+
+<!-- ================= FOUNDER SECTION ================= -->
+<section class="founder-section">
+  <div class="founder-container">
+
+    <div class="founder-image">
+      <img src="founder.jpg" alt="Founder">
+    </div>
+
+    <div class="founder-content">
+      <h3>Founder</h3>
+      <h2>Founder Name</h2>
+      <p>
+        This platform was created with one mission — to help students
+        reduce pressure, stay focused, and grow with clarity instead of chaos.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section-container contact-premium" id="contact">
+  <div class="contact-grid map-right">
+
+    <!-- LEFT : TEXT -->
+    <div class="contact-branding">
+      <h2 class="contact-title">Location <span class="ampersand">&</span> Contact</h2>
+      <div class="location-decorative-line"></div>
+      <p class="location-subtitle">
+        Visit our sanctuary in the heart of Surat. Restoration is just a step away. 
+      </p>
+
+      <div class="contact-details">
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="detail-text">
+            <h3>The Sanctuary</h3>
+            <p>
+              Chill Thrive Ice Bath At Samavesh, Aqua Therapy Centre, Plot no - 3,
+              SD Jain School Lane, Opp. Livestream Cafe, Piplod, Surat, Gujarat 395007
+            </p>
+            <a href="https://maps.app.goo.gl/95u3yV6N3C65GzC9A"
+               target="_blank"
+               class="map-link">Get Directions →</a>
+          </div>
+        </div>
+
+        <div class="contact-methods">
+          <div class="detail-item mini">
+            <div class="detail-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="detail-text">
+              <h3>Connect</h3>
+              <a href="tel:+919227025160">+91 92270 25160</a>
+            </div>
+          </div>
+
+          <div class="detail-item mini">
+            <div class="detail-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="detail-text">
+              <h3>Email</h3>
+              <a href="mailto:thrivechill@gmail.com">thrivechill@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT : MAP -->
+    <div class="map-container right-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.288210350482!2d72.77259277503462!3d21.140924780538604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04d80f5509763%3A0xc39247f48e9f598e!2sChill%20thrive%20Ice%20Bath!5e0!3m2!1sen!2sin!4v1704900000000!5m2!1sen!2sin&maptype=roadmap&style=feature:all|element:labels.text.fill|color:0xffffff"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+
+    </main> 
+
+
+    <footer class="grand-footer">
+        <div class="footer-top">
+            <div class="newsletter-container">
+                <h3>Exclusive Wellness Access</h3>
+                <p>Unlock insider recovery tips and exclusive member offers.</p>
+                <form class="footer-form">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">Join Now</button>
+                </form>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-main">
+            <div class="footer-col branding-col">
+                <img src="chillthrive.png" alt="Chill Thrive" class="footer-logo">
+                <h4>CHILL THRIVE</h4>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <a href="founder.html">Founder Story</a>
+                <a href="services.html">Loyalty Program</a>
+                <a href="awareness.html">Science of Recovery</a>
+                <a href="gallery.html">Our Sanctuary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Professional</h4>
+                <a href="#">Corporate Wellness</a>
+                <a href="#">Athlete Programs</a>
+                <a href="#">Affiliate Partner</a>
+            </div>
+            <div class="footer-col">
+                <h4>Need Help?</h4>
+                <p class="footer-phone">+91 92270 25160</p>
+                <a href="contact.html">Contact Support</a>
+                <a href="booking.html">Booking FAQ</a>
+            </div>
+        </div>
+        <div class="brand-strip">
+            <div class="brand-item">Ice Bath</div>
+            <div class="brand-item">Steam Bath</div>
+            <div class="brand-item">Jacuzzi</div>
+            <div class="brand-item">Sauna</div>
+            <div class="brand-item">Contrast Therapy</div>
+        </div>
+        <div class="footer-bottom">
+           <div class="social-links">
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/chill.thrive"
+     target="_blank"
+     class="social-icon instagram"
+     aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/YOUR_FACEBOOK_PAGE"
+     target="_blank"
+     class="social-icon facebook"
+     aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <!-- X (Twitter) -->
+  <a href="https://x.com/YOUR_X_USERNAME"
+     target="_blank"
+     class="social-icon x"
+     aria-label="X">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+</div>
+
+            <div class="legal-links">
+                <a href="http://127.0.0.1:5500/Web%20Page/tandc.html">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies</a>
+                <a href="#">Site Map</a>
+            </div>
+            <p class="copyright">Chill Thrive is a part of Wellness Group © 2026</p>
+        </div>
+    </footer>
+       
+    <script>
+
+
+        document.body.style.overflow = "auto";
+
+
+        
+  // Highlight current page in sidebar
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+
+
+
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            const btn = document.getElementById("menuBtn");
+            const isActive = sidebar.classList.toggle("active");
+            overlay.classList.toggle("active");
+            if(btn) btn.setAttribute("aria-expanded", isActive);
+        }
+
+        // new added //
+
+        
+  const navbar = document.querySelector('.navbar');
+
+  window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+          navbar.classList.add('scrolled');
+      } else {
+          navbar.classList.remove('scrolled');
+      }
+  });
+
+       // new added //
+
+        function startHeroSlideshow() {
+            const slides = document.querySelectorAll('.slide');
+            if(slides.length === 0) return;
+            let currentSlide = 0;
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 7000); 
+        }
+
+        function scrollSlider(direction) {
+            const wrapper = document.getElementById('servicesWrapper');
+            const cardWidth = wrapper.querySelector('.service-card').offsetWidth + 30;
+            wrapper.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+        }
+
+        const servicesWrapper = document.getElementById('servicesWrapper');
+        servicesWrapper.addEventListener('scroll', () => {
+            const cardWidth = servicesWrapper.querySelector('.service-card').offsetWidth + 30;
+            const index = Math.round(servicesWrapper.scrollLeft / cardWidth) + 1;
+            document.getElementById('slideCounter').innerText = `${index} / 4`;
+        });
+
+        
+
+        // change start //
+
+        /* ================= LOADER CONTROL ================= */
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+
+  setTimeout(() => {
+    loader.classList.add("hide");
+
+    setTimeout(() => {
+      loader.style.display = "none";
+      document.body.style.overflow = "auto";
+      startHeroSlideshow();
+    }, 1000);
+
+  }, 2500);
+});
+
+
+const reviewWrapper = document.getElementById("reviewsWrapper");
+const reviewCards = document.querySelectorAll(".review-card");
+const reviewDots = document.getElementById("reviewDots");
+
+let reviewIndex = 0;
+const reviewGap = 32;
+let reviewCardWidth = reviewCards[0].offsetWidth + reviewGap;
+
+/* Create dots */
+reviewCards.forEach((_, i) => {
+  const dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+  reviewDots.appendChild(dot);
+});
+
+const dots = reviewDots.querySelectorAll("span");
+
+function updateReviews() {
+  reviewWrapper.style.transform =
+    `translateX(-${reviewIndex * reviewCardWidth}px)`;
+
+  reviewCards.forEach(card => card.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
+
+  reviewCards[reviewIndex].classList.add("active");
+  dots[reviewIndex].classList.add("active");
+}
+
+/* Auto slide */
+setInterval(() => {
+  reviewIndex = (reviewIndex + 1) % reviewCards.length;
+  updateReviews();
+}, 4500);
+
+/* Dot click */
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    reviewIndex = i;
+    updateReviews();
+  });
+});
+
+/* Resize fix */
+window.addEventListener("resize", () => {
+  reviewCardWidth = reviewCards[0].offsetWidth + reviewGap;
+  updateReviews();
+});
+
+
+
+const counters = document.querySelectorAll(".stat-number");
+
+const countUp = (el) => {
+  const target = parseFloat(el.dataset.target);
+  const isDecimal = target % 1 !== 0;
+  const duration = 2000;
+  const startTime = performance.now();
+
+  const update = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    let value = target * progress;
+
+    el.textContent = isDecimal
+      ? value.toFixed(1)
+      : Math.floor(value);
+
+    if (progress < 1) requestAnimationFrame(update);
+  };
+
+  requestAnimationFrame(update);
+};
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.classList.contains("counted")) {
+      entry.target.classList.add("counted");
+      countUp(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => observer.observe(counter));
+
+
+
+const wrapper = document.getElementById("servicesWrapper");
+const viewport = document.querySelector(".services-viewport");
+const dotsContainer = document.getElementById("sliderDots");
+
+let cards = Array.from(wrapper.children);
+const gap = 32;
+let cardWidth = cards[0].offsetWidth + gap;
+
+/* Clone for infinite */
+wrapper.append(cards[0].cloneNode(true));
+wrapper.prepend(cards[cards.length - 1].cloneNode(true));
+cards = Array.from(wrapper.children);
+
+let index = 1;
+let autoScroll;
+
+/* Init */
+wrapper.style.transform = `translateX(-${cardWidth * index}px)`;
+createDots();
+updateActive();
+
+/* Resize */
+window.addEventListener("resize", () => {
+  cardWidth = cards[0].offsetWidth + gap;
+  wrapper.style.transition = "none";
+  wrapper.style.transform = `translateX(-${cardWidth * index}px)`;
+  requestAnimationFrame(() => wrapper.style.transition = "transform 0.5s ease");
+});
+
+/* Move */
+function moveSlide(dir) {
+  index += dir;
+  wrapper.style.transform = `translateX(-${cardWidth * index}px)`;
+
+  wrapper.addEventListener("transitionend", () => {
+    if (index === 0) index = cards.length - 2;
+    if (index === cards.length - 1) index = 1;
+
+    wrapper.style.transition = "none";
+    wrapper.style.transform = `translateX(-${cardWidth * index}px)`;
+    requestAnimationFrame(() => wrapper.style.transition = "transform 0.5s ease");
+
+    updateActive();
+  }, { once: true });
+}
+
+/* Auto Scroll */
+function startAuto() {
+  autoScroll = setInterval(() => moveSlide(1), 4200);
+}
+function stopAuto() {
+  clearInterval(autoScroll);
+}
+startAuto();
+
+/* Pause on hover */
+viewport.addEventListener("mouseenter", stopAuto);
+viewport.addEventListener("mouseleave", startAuto);
+
+/* Touchpad scroll */
+let wheelLock = false;
+viewport.addEventListener("wheel", e => {
+  e.preventDefault();
+  if (wheelLock) return;
+  wheelLock = true;
+  moveSlide(e.deltaY > 0 ? 1 : -1);
+  setTimeout(() => wheelLock = false, 500);
+}, { passive: false });
+
+/* Active Card */
+function updateActive() {
+  cards.forEach(card => card.classList.remove("active"));
+  cards[index].classList.add("active");
+
+  document.querySelectorAll(".slider-dots span")
+    .forEach((dot, i) => dot.classList.toggle("active", i === index - 1));
+}
+
+/* Dots */
+function createDots() {
+  for (let i = 0; i < cards.length - 2; i++) {
+    const dot = document.createElement("span");
+    dotsContainer.appendChild(dot);
+  }
+}
+
+
+
+
+    </script>
+</body>
+</html>

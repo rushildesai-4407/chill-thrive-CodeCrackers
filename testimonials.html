@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews | Chill Thrive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{margin:0px;padding:0px;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f8fafc;color:#111}
+/* ---------- NAV ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
+
+/* GOLDEN LUXURY LINE */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
+
+/* LEFT */
+.nav-left{
+  display:flex;
+  align-items:center;
+  z-index:2;
+}
+
+.nav-logo{
+  height:68px;
+}
+
+/* CENTER */
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  z-index:1;
+}
+
+.brand-main{
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand-sub{
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  align-items:center;
+  z-index:3;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:350px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:100px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:70px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:15px;
+  transition:0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  width:18px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+/* HEADER */
+.header{background:#003366;padding:22px;color:#fff;text-align:center}
+.page-header{
+  text-align:center;
+  max-width:720px;
+  margin:100px auto 70px;
+  padding:0 20px;
+}
+.page-header h1{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  color:#16213E;
+}
+.page-header p{
+  margin-top:14px;
+  color:#64748b;
+  font-size:15px;
+}
+/* CONTAINER */
+.container{max-width:1200px;margin:40px auto;padding:0 20px}
+.section-title{font-size:26px;margin-bottom:20px;color:#003366}
+
+/* TEXT TESTIMONIALS */
+.testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-bottom:60px;
+}
+.testimonial-card{
+  background:#fff;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+.testimonial-card p{font-size:15px;color:#444;margin-bottom:12px}
+.name{font-weight:600;color:#003366}
+.stars{color:#fbbf24;margin-top:8px}
+.show-btn{
+  margin:50px auto 0;
+  display:block;
+  padding:14px 34px;
+  background:#16213E;
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+}
+/* VIDEO GRID */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+  margin-bottom:60px;
+}
+.video-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+.video-card iframe{
+  width:100%;
+  height:200px;
+  border:none;
+}
+.video-info{
+  padding:15px;
+  font-weight:500;
+  color:#003366;
+}
+
+/* REVIEW FORM */
+.review-form{
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  max-width:700px;
+  margin:auto;
+}
+.review-form label{font-weight:500;margin-bottom:5px;display:block}
+.review-form input,
+.review-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:18px;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+.review-form textarea{resize:none;height:100px}
+
+/* STAR INPUT */
+.star-input i{
+  font-size:22px;
+  color:#ccc;
+  cursor:pointer;
+}
+.star-input i.active{color:#fbbf24}
+
+.submit-btn{
+  background:#003366;
+  color:#fff;
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+:root{
+  --white:#FFFFFF;
+  --accent-gold:#EFC07B;
+}
+
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= FOOTER ================= */
+
+.grand-footer{
+  background:#0F172A;
+  color:var(--white);
+  padding:50px 6% 25px;
+  font-family:'Inter', sans-serif;
+}
+
+/* ---------- DIVIDER ---------- */
+.footer-divider{
+  border:0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-bottom:35px;
+}
+
+/* ---------- MAIN GRID ---------- */
+.footer-main{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:30px;
+  margin-bottom:45px;
+}
+
+.footer-logo{
+  height:45px;
+  margin-bottom:12px;
+}
+
+/* ---------- COLUMNS ---------- */
+.footer-col h4{
+  color:var(--accent-gold);
+  text-transform:uppercase;
+  font-size:0.7rem;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.footer-col a{
+  display:block;
+  color:var(--white);
+  text-decoration:none;
+  opacity:0.65;
+  margin-bottom:8px;
+  font-size:0.85rem;
+  transition:0.3s ease;
+}
+
+.footer-col a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+  transform:translateX(4px);
+}
+
+.footer-phone{
+  font-size:1rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+/* ---------- BRAND STRIP ---------- */
+.brand-strip{
+  display:flex;
+  justify-content:space-between;
+  padding:22px 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:25px;
+  opacity:0.45;
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+}
+
+/* ---------- BOTTOM ---------- */
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.social-links a{
+  font-size:2rem;
+  margin-right:15px;
+  
+  
+  transition:0.3s;
+}
+
+.social-links a:hover{
+  opacity:1;
+  color:white;
+}
+
+.legal-links a{
+  font-size:0.7rem;
+  opacity:0.5;
+  margin-right:12px;
+  color:var(--white);
+  text-decoration:none;
+}
+
+.legal-links a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+}
+
+.copyright{
+  width:100%;
+  margin-top:15px;
+  text-align:center;
+  font-size:0.7rem;
+  opacity:0.4;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .footer-main{grid-template-columns:1fr 1fr;}
+  .brand-strip{flex-direction:column; gap:8px;}
+}
+
+@media(max-width:600px){
+  .footer-main{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column; text-align:center;}
+}
+</style>
+    </style>
+       <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>.social-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.social-icon{
+  font-size:28px;
+  cursor:pointer;
+  transition:transform 0.25s ease, color 0.25s ease;
+}
+
+.social-icon:hover{
+  transform:scale(1.15);
+}
+
+/* Brand colors */
+.instagram{ color:#d4507c; }
+.instagram:hover{ color:#C13584; }
+
+.facebook{ color:#1877F2; }
+.facebook:hover{ color:#145DBF; }
+
+.x{ color:white; }
+.x:hover{ color:#444; }
+
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo" alt="Chill Thrive">
+  </div>
+
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
+
+  <div class="nav-right">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()">×</button>
+            <a href="http://127.0.0.1:5500/Web%20Page/index.html"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/services.html"><i class="fa-solid fa-spa"></i>Services</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
+  
+</div>
+ 
+<section class="page-header">
+  <br>
+  <h1>Client Experience</h1>
+  <br>
+  <p>Thoughtful words from those who found recovery, calm and clarity at Chill Thrive.</p>
+</section>
+
+<div class="container">
+
+<!-- TEXT REVIEWS -->
+
+<div class="testimonial-grid" id="reviewList"></div>
+<div style="text-align:center;margin-bottom:60px;">
+  <button class="show-btn" id="toggleReviewsBtn" style="display:none;">
+    Show more reviews
+  </button>
+</div>
+
+<!-- VIDEO TESTIMONIALS -->
+<h1 class="page-header">Video Testimonials</h1>
+<div class="video-grid">
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" allowfullscreen></iframe>
+    <div class="video-info">Client Review</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    <div class="video-info">Therapy Session</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/l482T0yNkeo" allowfullscreen></iframe>
+    <div class="video-info">User Experience</div>
+  </div>
+
+</div>
+
+<!-- SUBMIT REVIEW -->
+<h1 class="page-header">Submit Your Review</h1>
+
+<div class="review-form">
+  <label>Name</label>
+  <input type="text" id="name">
+
+  <label>Feedback</label>
+  <textarea id="feedback"></textarea>
+
+  <label>Star Rating (optional)</label>
+  <div class="star-input" id="starInput">
+    <i class="fas fa-star" data-value="1"></i>
+    <i class="fas fa-star" data-value="2"></i>
+    <i class="fas fa-star" data-value="3"></i>
+    <i class="fas fa-star" data-value="4"></i>
+    <i class="fas fa-star" data-value="5"></i>
+  </div>
+
+  <button class="show-btn" onclick="addReview()">Submit Review</button>
+</div>
+
+</div>
+
+ <footer class="grand-footer">
+
+  <hr class="footer-divider">
+
+  <div class="footer-main">
+
+    <div class="footer-col branding-col">
+      <img src="chillthrive.png" alt="Chill Thrive" class="footer-logo">
+      <h4>Chill Thrive</h4>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick links</h4>
+      <a href="founder.html">Founder Story</a>
+      <a href="services.html">Loyalty Program</a>
+      <a href="awareness.html">Science of Recovery</a>
+      <a href="gallery.html">Our Sanctuary</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Professional</h4>
+      <a href="#">Corporate Wellness</a>
+      <a href="#">Athlete Programs</a>
+      <a href="#">Affiliate Partner</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Need Help?</h4>
+      <p class="footer-phone">+91 92270 25160</p>
+      <a href="contact.html">Contact Support</a>
+      <a href="booking.html">Booking FAQ</a>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div>Ice Bath</div>
+    <div>Steam Bath</div>
+    <div>Jacuzzi</div>
+    <div>Sauna</div>
+    <div>Contrast Therapy</div>
+  </div>
+
+  <div class="footer-bottom">
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/chill.thrive" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <div class="legal-links">
+      <a href="tandc.html">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Site Map</a>
+    </div>
+
+    <p class="copyright">
+      Chill Thrive is a part of Wellness Group © 2026
+    </p>
+
+  </div>
+
+</footer>
+
+<script>
+const firebaseConfig={
+  apiKey: "AIzaSyD8_xuBzMXPrhqoIyG8jLRZtWd2q0Lcsrs",
+    authDomain: "chill-thrive-8ec9c.firebaseapp.com",
+    projectId: "chill-thrive-8ec9c",
+    storageBucket: "chill-thrive-8ec9c.firebasestorage.app",
+    messagingSenderId: "620526540978",
+    appId: "1:620526540978:web:803517f456f8c2a15891ab",
+    measurementId: "G-PG8BVMNF9D"
+};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+
+let selectedStars=0;
+document.querySelectorAll('#starInput i').forEach((star,i)=>{
+  star.onclick=()=>{
+    selectedStars=i+1;
+    document.querySelectorAll('#starInput i').forEach(s=>s.classList.remove('active'));
+    for(let j=0;j<selectedStars;j++) document.querySelectorAll('#starInput i')[j].classList.add('active');
+  }
+});
+
+function addReview(){
+  const name = document.getElementById("name").value.trim();
+  const feedback = document.getElementById("feedback").value.trim();
+
+  if (!name || !feedback) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  if (selectedStars === 0) {
+    alert("Please select a star rating.");
+    return;
+  }
+
+  db.collection("reviews").add({
+    name: name,
+    feedback: feedback,
+    stars: selectedStars,
+    status: "pending",
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  })
+  .then(() => {
+    alert("Review submitted! Thanks for the feedback");
+
+    // Reset form
+    document.getElementById("name").value = "";
+    document.getElementById("feedback").value = "";
+    selectedStars = 0;
+    document.querySelectorAll('#starInput i').forEach(s => s.classList.remove('active'));
+  })
+  .catch(err => alert(err.message));
+}
+
+
+let showAllReviews = false;
+let allReviews = [];
+
+db.collection("reviews")
+  .where("status", "==", "approved")
+  .onSnapshot(snap => {
+
+    allReviews = snap.docs
+      .map(d => d.data())
+      .sort((a, b) => {
+        if (!a.createdAt || !b.createdAt) return 0;
+        return b.createdAt.seconds - a.createdAt.seconds;
+      });
+
+    renderReviews();
+});
+function renderReviews() {
+  const list = document.getElementById("reviewList");
+  const toggleBtn = document.getElementById("toggleReviewsBtn");
+
+  list.innerHTML = "";
+
+  const visibleReviews = showAllReviews
+    ? allReviews
+    : allReviews.slice(0, 6);
+
+  visibleReviews.forEach(r => {
+    list.innerHTML += `
+      <div class="testimonial-card">
+        <p>${r.feedback}</p>
+        <div class="name">${r.name}</div>
+        <div class="stars">${"★".repeat(r.stars || 0)}</div>
+      </div>`;
+  });
+
+  if (allReviews.length > 6) {
+    toggleBtn.style.display = "inline-block";
+    toggleBtn.innerText = showAllReviews
+      ? "Show less reviews"
+      : "Show more reviews";
+  } else {
+    toggleBtn.style.display = "none";
+  }
+}
+
+document.getElementById("toggleReviewsBtn").onclick = () => {
+  showAllReviews = !showAllReviews;
+  renderReviews();
+};
+
+</script>
+   <script>
+  function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+function closemenu(){
+  document.getElementById('sidebar').classList.remove('active');
+}
+    </script>
+    <script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+const page = location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  if(link.getAttribute("href") === page){
+    link.classList.add("active");
+  }
+});
+</script>
+
+</body>
+</html>

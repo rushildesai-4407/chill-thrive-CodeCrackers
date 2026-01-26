@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chill Thrive | Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+body{
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  transition: background 0.8s ease;
+}
+
+h1,h2,h3{color:#003366}
+p,li{color:#444}
+
+/* ---------- NAV ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
+
+/* GOLDEN LUXURY LINE */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
+
+/* LEFT */
+.nav-left{
+  display:flex;
+  align-items:center;
+  z-index:2;
+}
+
+.nav-logo{
+  height:68px;
+}
+
+/* CENTER */
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  z-index:1;
+}
+
+.brand-main{
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand-sub{
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  align-items:center;
+  z-index:3;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:350px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:100px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:70px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:15px;
+  transition:0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  width:18px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+
+
+/* ---------- LAYOUT ---------- */
+.container{
+  padding:40px 6%;
+}
+.section-title{
+  margin-bottom:25px;
+  font-size:28px;
+}
+
+/* ---------- SERVICES GRID ---------- */
+.services{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:30px;
+}
+
+@media(max-width:1000px){
+  .services{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .services{grid-template-columns:1fr;}
+}
+
+
+
+.service-box{
+  background: #ddedf8;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow: 0 14px 30px rgba(0, 51, 102, 0.12);
+  transition: 0.4s;
+}
+
+.service-box:hover{transform:translateY(-6px)}
+.service-img{
+  height:200px;
+  background-size:cover;
+  background-position:center;
+}
+.service-content{padding:22px}
+
+/* ---------- BUTTONS ---------- */
+.btns{
+  margin-top:18px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:14px;
+}
+.book{
+  background: linear-gradient(135deg, rgba(239,192,123,0.65), #d9a441);
+  color: #1a1a1a;
+  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(217, 164, 65, 0.4);
+  transition: all 0.3s ease;
+}
+.book:hover{
+  background: linear-gradient(135deg, #ffd27a, #e3b14c);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(217, 164, 65, 0.55);
+}
+.show{
+  background: linear-gradient(135deg, #16213E, #005fa3);
+  color: #ffffff;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 119, 204, 0.35);
+  transition: all 0.3s ease;
+}
+
+.show:hover{
+  background: linear-gradient(135deg, #0090ff, #006bbd);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 119, 204, 0.5);
+}
+
+
+
+
+/* ---------- BADGE ---------- */
+.badge{
+  background:#ffcc00;
+  color:#000;
+  padding:4px 12px;
+  border-radius:12px;
+  font-size:12px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+/* ---------- EXPANDED ---------- */
+
+.expanded{
+  display:none;
+  animation:fade 0.6s ease;
+}
+.expanded.active{display:block}
+.back{
+  margin-top:25px;
+  background:#003366;
+  color:white;
+}
+/* ---------- POPUP ---------- */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.popup-box{
+  position:relative;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:400px;
+}
+.popup-close{
+  position:absolute;
+  top:12px;
+  right:15px;
+  z-index: 9999;
+  background:#ffffff;
+  border:2px solid #003366;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size:22px;
+  font-weight: bold;
+  cursor:pointer;
+  color:#003366;
+  align-items: center;
+  justify-content: center;
+}
+.popup-close:hover{
+  background:#0077cc;
+  color:#ffffff;
+}
+.popup-close:active{
+  transform: scale(0.9);
+}
+.popup-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+.confirm{width:100%;background:#0077cc;color:white}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:600px){
+  .section-title{font-size:24px}
+  .service-img{height:180px}
+  .navbar h2{font-size:18px}
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ---------- EXPANDED SPLIT LAYOUT ---------- */
+
+.expanded{
+  padding:40px 6%;
+}
+
+.expanded-layout{
+  display:flex;
+  gap:30px;
+  margin-top:30px;
+  align-items:stretch;
+}
+
+/* LEFT SIDE - 40% */
+.expanded-text{
+  flex:4;
+  position:relative;
+  z-index:2;
+}
+
+/* RIGHT SIDE - 60% */
+.expanded-media{
+  flex:6;
+  min-height:450px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.15);
+  pointer-events:none;
+}
+
+/* IMAGE / VIDEO STYLE */
+.expanded-media .service-img,
+.expanded-media img,
+.expanded-media video{
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  border-radius:20px;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:800px){
+  .expanded-layout{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo" alt="Chill Thrive">
+  </div>
+
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
+
+  <div class="nav-right">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()">×</button>
+            <a href="http://127.0.0.1:5500/Web%20Page/index.html"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/services.html"><i class="fa-solid fa-spa"></i>Services</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
+  
+</div>
+
+<div class="container">
+<br><br><br><br>
+<!-- ================= INDIVIDUAL SERVICES ================= -->
+<h1 class="section-title">Our Services</h1>
+<div class="services" id="services">
+
+<!-- ICE BATH -->
+<div class="service-box" data-bg="#dbefff">
+  <div class="service-img" style="background-image:url('https://stemcellthailand.org/wp-content/uploads/2025/02/Ice-Baths-Cold-Showers-stem-cells.jpg.webp')"></div>
+  <div class="service-content">
+    <h2>Ice Bath Therapy</h2>
+    <p>Cold immersion recovery therapy</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Ice Bath Therapy')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p>Cold immersion therapy designed to reduce inflammation, improve circulation, and enhance mental toughness.</p>
+    <p><b>Duration:</b> 30 / 60 min</p>
+    <ul>
+      <li>Muscle recovery</li>
+      <li>Reduced soreness</li>
+      <li>Improved focus</li>
+      <li>Stress regulation</li>
+    </ul>
+    <p><b>Price:</b> ₹1500 / ₹2500</p>
+  </div>
+</div>
+
+<!-- JACUZZI -->
+<div class="service-box" data-bg="#eef7ff">
+  <div class="service-img" style="background-image:url('https://img.freepik.com/free-photo/young-woman-is-relaxing-jacuzzi_169016-22940.jpg?semt=ais_hybrid&w=740&q=80')"></div>
+  <div class="service-content">
+    <h2>Jacuzzi Therapy</h2>
+    <p>Warm hydrotherapy relaxation</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Jacuzzi Therapy')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p>Warm hydrotherapy for muscle relaxation and nervous system calm.</p>
+    <ul>
+      <li>Muscle relaxation</li>
+      <li>Improved blood flow</li>
+      <li>Stress relief</li>
+    </ul>
+    <p><b>Price:</b> ₹2000</p>
+  </div>
+</div>
+
+<!-- STEAM -->
+<div class="service-box" data-bg="#cfe9ff">
+  <div class="service-img" style="background-image:url('https://img.freepik.com/premium-photo/serene-nordic-man-enjoys-soothing-moment-luxurious-steam-sauna_1283595-38454.jpg?semt=ais_hybrid&w=740&q=80')"></div>
+  <div class="service-content">
+    <h2>Steam Bath</h2>
+    <p>Detoxifying heat therapy</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Steam Bath')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p>Detoxifying heat therapy for relaxation and respiratory health.</p>
+    <ul>
+      <li>Detox</li>
+      <li>Skin rejuvenation</li>
+      <li>Mental relaxation</li>
+    </ul>
+    <p><b>Price:</b> ₹1200</p>
+  </div>
+</div>
+
+
+</div>
+
+<!-- ================= COMBO PACKAGES ================= -->
+<h1 class="section-title" style="margin-top:60px">Combo Packages</h1>
+
+<div class="services">
+
+<!-- COMBO 1 -->
+<div class="service-box" data-bg="#c3e0ff">
+  <div class="service-img" style="background-image:url('https://i.pinimg.com/1200x/a0/cc/38/a0cc38e186010e50b04e3d388beff26f.jpg')"></div>
+  <div class="service-content">
+    <span class="badge">Popular</span>
+    <h2>Ice + Steam</h2>
+    <p>Recovery & Detox Combo</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Ice + Steam')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p><b>Time:</b> 60 min</p>
+    <p><s>₹3000</s> <b>₹2499</b></p>
+  </div>
+</div>
+
+<div class="service-box" data-bg="#b8dcff">
+  <div class="service-img" style="background-image:url('https://i.pinimg.com/1200x/0d/5b/73/0d5b73cdb286f4750951bede1cbd8931.jpg')"></div>
+  <div class="service-content">
+    <span class="badge">Best Value</span>
+    <h2>Ice + Jacuzzi</h2>
+    <p>The Ultimate Contrast Combo</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Ice + Jacuzzi')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p><b>Time:</b> 60 min</p>
+    <p><s>₹3000</s> <b>₹2499</b></p>
+  </div>
+</div>
+
+<!-- COMBO 2 -->
+<div class="service-box" data-bg="#b6d9ff">
+  <div class="service-img" style="background-image:url('https://assets-us-01.kc-usercontent.com/a07c5ec0-e08a-0014-c8c5-a7a73768c21f/37bab66c-7d0b-4b79-96f7-5a1643761f95/MAY23_UNWIND_HEADER.jpg')"></div>
+  <div class="service-content">
+    <span class="badge">Premium</span>
+    <h2>Full Recovery Combo</h2>
+    <p>Ice + Steam + Jacuzzi</p>
+    <div class="btns">
+      <button class="btn book" onclick="openPopup('Full Recovery Combo')">Book Now</button>
+      <button class="btn show" onclick="expandService(this)">Show More</button>
+    </div>
+  </div>
+  <div class="service-details" style="display:none">
+    <p><b>Time:</b> 90 min</p>
+    <p><s>₹5200</s> <b>₹3999</b></p>
+  </div>
+</div>
+
+</div>
+
+<!-- EXPANDED VIEW -->
+<div class="expanded" id="expanded">
+
+  <h1 id="expandedTitle"></h1>
+
+  <!-- TWO COLUMN LAYOUT -->
+  <div class="expanded-layout">
+
+    <!-- LEFT 40% : TEXT -->
+    <div class="expanded-text">
+      <div id="expandedContent"></div>
+      <button class="btn book" onclick="openPopup(document.getElementById('expandedTitle').innerText)">Book Now</button><br><br>
+      <button class="btn back" onclick="backToServices()">Back to All Services</button>
+    </div>
+
+    <!-- RIGHT 60% : IMAGE / VIDEO -->
+    <div class="expanded-media" id="expandedMedia"></div>
+
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+
+    <button class="popup-close" onclick="closePopup()">×</button>
+    <h2>Book Your Session</h2>
+    <p id="bookingService"
+    style="font-weight:bold;color:#003366;"></p>
+    <input placeholder="Name">
+    <input placeholder="Email">
+    <input placeholder="Contact No">
+    <input type="date">
+    <input type="time">
+    <button class="btn confirm" onclick="confirmBooking()">Confirm Booking</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+    // 🔴 PASTE YOUR REAL FIREBASE CONFIG HERE
+    const firebaseConfig = {
+     apiKey: "AIzaSyD8_xuBzMXPrhqoIyG8jLRZtWd2q0Lcsrs",
+    authDomain: "chill-thrive-8ec9c.firebaseapp.com",
+    projectId: "chill-thrive-8ec9c",
+    storageBucket: "chill-thrive-8ec9c.firebasestorage.app",
+    messagingSenderId: "620526540978",
+    appId: "1:620526540978:web:803517f456f8c2a15891ab",
+    measurementId: "G-PG8BVMNF9D"
+  };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize Firestore
+    var db = firebase.firestore();
+    </script>
+<script>
+
+  const serviceData = {
+  "Ice Bath Therapy": {
+    name: "Ice Bath Therapy",
+    duration: "60 mins",
+    price: 4500,
+    preferences: ["Guided Cold Exposure", "Breathwork (optional)"]
+  },
+  "Jacuzzi Therapy": {
+    name: "Jacuzzi Therapy",
+    duration: "45 mins",
+    price: 2000,
+    preferences: ["Warm Hydrotherapy", "Muscle Relaxation"]
+  },
+  "Steam Bath": {
+    name: "Steam Bath",
+    duration: "30 mins",
+    price: 1200,
+    preferences: ["Detox", "Skin Rejuvenation"]
+  },
+  "Ice + Steam": {
+    name: "Ice + Steam",
+    duration: "60 mins",
+    price: 2499,
+    preferences: ["Cold + Heat Contrast"]
+  },
+  "Ice + Jacuzzi": {
+    name: "Ice + Jacuzzi",
+    duration: "60 mins",
+    price: 2499,
+    preferences: ["Contrast Therapy"]
+  },
+  "Full Recovery Combo": {
+    name: "Full Recovery Combo",
+    duration: "90 mins",
+    price: 3999,
+    preferences: ["Complete Recovery"]
+  }
+};
+  
+  let selectedService="";
+  // 🔥 LOAD SERVICES FROM FIREBASE (APPEND, NOT REPLACE)
+const firebaseServicesContainer =
+  document.getElementById("services");
+
+db.collection("services")
+  .orderBy("createdAt", "asc")
+  .onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+      if (change.type === "added") {
+        const s = change.doc.data();
+
+        // 1️⃣ ADD SERVICE CARD TO UI
+       firebaseServicesContainer.insertAdjacentHTML("beforeend", `
+  <div class="service-box" data-bg="#eef7ff">
+
+    <!-- IMAGE -->
+    <div class="service-img"
+      style="background-image:url('${s.image}')">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="service-content">
+      <h2>${s.name}</h2>
+      <p>${s.description}</p>
+
+      <div class="btns">
+        <button class="btn book"
+          onclick="openPopup('${s.name}')">
+          Book Now
+        </button>
+        <button class="btn show"
+          onclick="expandService(this)">
+          Show More
+        </button>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="service-details" style="display:none">
+      <p>${s.description}</p>
+      <p><b>Duration:</b> ${s.duration} min</p>
+      <p><b>Price:</b> ₹${s.price}</p>
+    </div>
+
+  </div>
+`);
+
+
+        // 2️⃣ REGISTER SERVICE FOR BOOKING FLOW
+        serviceData[s.name] = {
+          name: s.name,
+          duration: `${s.duration} mins`,
+          price: s.price,
+          preferences: []
+        };
+      }
+    });
+  });
+
+
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active")
+}
+
+function closemenu(){
+  document.getElementById('sidebar').classList.remove('active');
+}
+
+function expandService(btn){
+  const box = btn.closest(".service-box")
+
+  /* CHANGE BACKGROUND */
+  document.body.style.background = box.dataset.bg
+
+  /* HIDE SERVICES */
+  document.getElementById("services").style.display = "none"
+  document.querySelectorAll(".services")[1].style.display = "none"
+
+  /* SET TITLE */
+  document.getElementById("expandedTitle").innerText =
+    box.querySelector("h2").innerText
+
+  /* COPY IMAGE / VIDEO */
+  const media = box.querySelector(".service-img")
+  document.getElementById("expandedMedia").innerHTML =
+    `<div class="service-img" style="${media.getAttribute("style")}"></div>`
+
+  /* COPY TEXT CONTENT */
+  document.getElementById("expandedContent").innerHTML =
+    box.querySelector(".service-details").innerHTML
+
+  /* SHOW EXPANDED */
+  document.getElementById("expanded").classList.add("active")
+}
+
+function backToServices(){
+  document.body.style.background =
+    "linear-gradient(135deg,#eaf4ff,#ffffff)"
+  document.getElementById("expanded").classList.remove("active")
+  document.getElementById("services").style.display = "grid"
+  document.querySelectorAll(".services")[1].style.display = "grid"
+}
+
+function openPopup(serviceName){
+  const service = serviceData[serviceName];
+
+  sessionStorage.setItem("serviceName", service.name);
+  sessionStorage.setItem("serviceDuration", service.duration);
+  sessionStorage.setItem("servicePrice", service.price);
+  sessionStorage.setItem("servicePreferences", JSON.stringify(service.preferences));
+
+  window.location.href = "http://127.0.0.1:5500/Web%20Page/booking1.html";
+
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+function confirmBooking(){
+
+  const inputs = document.querySelectorAll(".popup-box input");
+  let bookingData = {};
+
+  for(let input of inputs){
+    if(input.value.trim()===""){
+    alert("❌Please fill all details");
+    return;
+    }
+  bookingData[input.placeholder || input.type] = input.value;
+  }
+
+  bookingData.service = selectedService;
+  bookingData.bookingTime = new Date().toLocaleString();
+
+  localStorage.setItem(
+    "chillthriveBooking",
+    JSON.stringify(bookingData)
+  );
+
+  closePopup();
+
+  document.getElementById("popup").style.display = "none"
+  alert("🎉 Congratulations!\n\n" +  "Your booking for '"+ selectedService +"' has been confirmed.\n" + "Please check your email inbox for more details.");
+  inputs.forEach(input => input.value = "");
+}
+
+</script>
+<script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+const page = location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  if(link.getAttribute("href") === page){
+    link.classList.add("active");
+  }
+});
+</script>
+
+</body>
+</html>

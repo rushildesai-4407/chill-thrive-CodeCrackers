@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chill Thrive | Checkout</title>
+
+<style>
+body{margin:0;font-family:Helvetica Neue,Arial;background:#fff;color:#111}
+*{box-sizing:border-box}
+
+/* NAV SAME */
+.button{
+  margin-top:30px;
+  width:100%;
+  padding:18px;
+  background:#0c3257;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.logo{
+  height:40px;
+  width:auto;
+  cursor: pointer;
+}
+.form-card{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:32px;
+}
+
+.form-card h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:20px;
+}
+:root{  --shadow:0 20px 40px rgba(11, 17, 31, 0.15);
+}
+
+
+
+
+
+/* LAYOUT */
+.wrap{
+  max-width:1200px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:40px;
+  padding:80px 20px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  background:#888;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+}
+
+/* SUMMARY BOX */
+.summary-box{
+  background:#F1F7FD;        /* very light blue */
+  border:1px solid #D6E6F5;  /* soft blue border */
+  border-radius:12px;
+  padding:24px;
+}
+/* GENDER RADIO – THEMED */
+.gender-group{
+  margin-bottom:16px;
+}
+
+.gender-label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:500;
+  color:#003366;
+}
+
+.gender-options{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.gender-option{
+  position:relative;
+}
+
+.gender-option input{
+  display:none;
+}
+
+.gender-option span{
+  display:inline-block;
+  padding:12px 20px;
+  border:2px solid #D6E6F5;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:14px;
+  color:#003366;
+  background:#F4F9FF;
+  transition:0.25s;
+}
+
+.gender-option input:checked + span{
+  background:#003366;
+  color:#fff;
+  border-color:#003366;
+}
+
+.gender-option span:hover{
+  border-color:#1F6FB2;
+}
+
+
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ---------- ROOT COLORS ---------- */
+:root{
+  --white:#FFFFFF;
+  --accent-gold:#EFC07B;
+}
+
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* ================= FOOTER ================= */
+
+.grand-footer{
+  background:#0F172A;
+  color:var(--white);
+  padding:50px 6% 25px;
+  font-family:'Inter', sans-serif;
+}
+
+/* ---------- DIVIDER ---------- */
+.footer-divider{
+  border:0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-bottom:35px;
+}
+
+/* ---------- MAIN GRID ---------- */
+.footer-main{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:30px;
+  margin-bottom:45px;
+}
+
+.footer-logo{
+  height:45px;
+  margin-bottom:12px;
+}
+
+/* ---------- COLUMNS ---------- */
+.footer-col h4{
+  color:var(--accent-gold);
+  text-transform:uppercase;
+  font-size:0.7rem;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.footer-col a{
+  display:block;
+  color:var(--white);
+  text-decoration:none;
+  opacity:0.65;
+  margin-bottom:8px;
+  font-size:0.85rem;
+  transition:0.3s ease;
+}
+
+.footer-col a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+  transform:translateX(4px);
+}
+
+.footer-phone{
+  font-size:1rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+/* ---------- BRAND STRIP ---------- */
+.brand-strip{
+  display:flex;
+  justify-content:space-between;
+  padding:22px 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:25px;
+  opacity:0.45;
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+}
+
+/* ---------- BOTTOM ---------- */
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.social-links a{
+  font-size:2rem;
+  margin-right:15px;
+  
+  
+  transition:0.3s;
+}
+
+.social-links a:hover{
+  opacity:1;
+  color:white;
+}
+
+.legal-links a{
+  font-size:0.7rem;
+  opacity:0.5;
+  margin-right:12px;
+  color:var(--white);
+  text-decoration:none;
+}
+
+.legal-links a:hover{
+  opacity:1;
+  color:var(--accent-gold);
+}
+
+.copyright{
+  width:100%;
+  margin-top:15px;
+  text-align:center;
+  font-size:0.7rem;
+  opacity:0.4;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .footer-main{grid-template-columns:1fr 1fr;}
+  .brand-strip{flex-direction:column; gap:8px;}
+}
+
+@media(max-width:600px){
+  .footer-main{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column; text-align:center;}
+}
+</style>
+    </style>
+       <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>.social-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.social-icon{
+  font-size:28px;
+  cursor:pointer;
+  transition:transform 0.25s ease, color 0.25s ease;
+}
+
+.social-icon:hover{
+  transform:scale(1.15);
+}
+
+/* Brand colors */
+.instagram{ color:#d4507c; }
+.instagram:hover{ color:#C13584; }
+
+.facebook{ color:#1877F2; }
+.facebook:hover{ color:#145DBF; }
+
+.x{ color:white; }
+.x:hover{ color:#444; }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
+
+/* GOLDEN LUXURY LINE */
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
+
+/* LEFT */
+.nav-left{
+  display:flex;
+  align-items:center;
+  z-index:2;
+}
+
+.nav-logo{
+  height:68px;
+}
+
+/* CENTER */
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  z-index:1;
+}
+
+.brand-main{
+  font-family:'Playfair Display', serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand-sub{
+  font-family:'Inter', sans-serif;
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  align-items:center;
+  z-index:3;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:350px;
+  height:100%;
+
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+
+  padding:100px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar-close{
+  position:absolute;
+  top:25px;
+  right:-50px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  font-family:'Playfair Display', serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:15px;
+  transition:0.3s ease;
+}
+
+.sidebar-close:hover{
+  color:#EFC07B;
+  transform:rotate(90deg);
+}
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.sidebar i{
+  font-size:0.9rem;
+  width:18px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo" alt="Chill Thrive">
+  </div>
+
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
+
+  <div class="nav-right">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()">×</button>
+            <a href="http://127.0.0.1:5500/Web%20Page/index.html"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/services.html"><i class="fa-solid fa-spa"></i>Services</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
+            <a href="http://127.0.0.1:5500/Web%20Page/contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
+  
+</div>
+
+
+<div class="wrap">
+ <div class="form-card">
+  <!-- FORM -->
+  <div>
+    <h2>Please Enter Your Details</h2>
+    <input id="fname" placeholder="First name">
+    <input id="lname" placeholder="Last name">
+ <div class="gender-group">
+  <label class="gender-label">Gender</label>
+
+  <div class="gender-options">
+    <label class="gender-option">
+      <input type="radio" name="gender" value="Male">
+      <span>Male</span>
+    </label>
+
+    <label class="gender-option">
+      <input type="radio" name="gender" value="Female">
+      <span>Female</span>
+    </label>
+
+    <label class="gender-option">
+      <input type="radio" name="gender" value="Other">
+      <span>Other</span>
+    </label>
+  </div>
+</div>
+
+
+    <input id="phone" placeholder="Phone number">
+    <input id="email" placeholder="Email">
+    <button class="button" type="button" onclick="goToSummary()">Continue to summary</button>
+  </div>
+</div>
+  <!-- SUMMARY -->
+  <div class="summary-box">
+    <h2>Summary</h2><br>
+    <h3 id="sumService"></h3>
+    <p id="sumDuration"></p>
+    <p id="sumDateTime"></p>
+    <p id="sumPrice"></p>
+  </div>
+
+</div>
+<footer class="grand-footer">
+
+  <hr class="footer-divider">
+
+  <div class="footer-main">
+
+    <div class="footer-col branding-col">
+      <img src="chillthrive.png" alt="Chill Thrive" class="footer-logo">
+      <h4>Chill Thrive</h4>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick links</h4>
+      <a href="founder.html">Founder Story</a>
+      <a href="services.html">Loyalty Program</a>
+      <a href="awareness.html">Science of Recovery</a>
+      <a href="gallery.html">Our Sanctuary</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Professional</h4>
+      <a href="#">Corporate Wellness</a>
+      <a href="#">Athlete Programs</a>
+      <a href="#">Affiliate Partner</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Need Help?</h4>
+      <p class="footer-phone">+91 92270 25160</p>
+      <a href="contact.html">Contact Support</a>
+      <a href="booking.html">Booking FAQ</a>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div>Ice Bath</div>
+    <div>Steam Bath</div>
+    <div>Jacuzzi</div>
+    <div>Sauna</div>
+    <div>Contrast Therapy</div>
+  </div>
+
+  <div class="footer-bottom">
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/chill.thrive" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <div class="legal-links">
+      <a href="tandc.html">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Site Map</a>
+    </div>
+
+    <p class="copyright">
+      Chill Thrive is a part of Wellness Group © 2026
+    </p>
+
+  </div>
+
+</footer>
+
+<script>
+
+   
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active")
+}
+
+function closemenu(){
+  document.getElementById('sidebar').classList.remove('active');
+}
+// ✅ Read booking data (coming from booking1)
+const service = sessionStorage.getItem("serviceName");
+const duration = sessionStorage.getItem("serviceDuration");
+const price = sessionStorage.getItem("servicePrice");
+const date = localStorage.getItem("date");
+const time = localStorage.getItem("time");
+
+function goToSummary(){
+  if (
+  !document.getElementById("fname").value ||
+  !document.getElementById("lname").value ||
+  !document.getElementById("phone").value ||
+  !document.getElementById("email").value
+) {
+  alert("Please fill all required fields");
+  return;
+}
+
+  sessionStorage.setItem("fname", document.getElementById("fname").value);
+  sessionStorage.setItem("lname", document.getElementById("lname").value);
+  const genderEl = document.querySelector('input[name="gender"]:checked');
+
+if (!genderEl) {
+  alert("Please select gender");
+  return;
+}
+
+sessionStorage.setItem("gender", genderEl.value);
+
+  sessionStorage.setItem("phone", document.getElementById("phone").value);
+  sessionStorage.setItem("email", document.getElementById("email").value);
+
+  window.location.href = "http://127.0.0.1:5500/Web%20Page/booking3.html";
+}
+
+if (service) {
+  document.getElementById("sumService").innerText =
+    "Chill Thrive – " + service;
+
+  document.getElementById("sumDuration").innerText =
+    duration ? `${service} — ${duration}` : service;
+
+  document.getElementById("sumDateTime").innerText =
+    `${date} at ${time}`;
+
+  document.getElementById("sumPrice").innerText =
+    `₹ ${price}`;
+}
+
+</script>
+<script>
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+const page = location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  if(link.getAttribute("href") === page){
+    link.classList.add("active");
+  }
+});
+</script>
+
+</body>
+</html>
