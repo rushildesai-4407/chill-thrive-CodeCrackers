@@ -1,172 +1,370 @@
-event web page:
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events | Chill Thrive</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    body { background: #eaf4ff; color: #333; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events | Chill Thrive</title>
 
-    /* MAINTAINED NAVBAR */
-    .navbar { 
-      background: #003366; 
-      color: #fff; 
-      padding: 15px 24px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      position: sticky;
-      top: 0;
-      z-index: 1001;
-    }
-    .logo { height: 40px; }
-    .nav-title { font-size: 22px; font-weight: bold; color:white; letter-spacing:1px; }
-    .tagline { display: block; font-size: 12px; opacity: 0.8; font-weight: normal; }
-    .menu { font-size: 26px; cursor: pointer; }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    /* MAINTAINED SIDEBAR */
-    .sidebar { 
-      position: fixed; 
-      top: 0; 
-      right: -260px; 
-      width: 260px; 
-      height: 100%; 
-      background: #002244; 
-      padding: 30px; 
-      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-      z-index: 1000; 
-      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    }
-    .sidebar.active { right: 0; }
-    .sidebar a { display: block; color: white; text-decoration: none; margin: 20px 0; font-size: 18px; transition: 0.2s; }
-    .sidebar a:hover { color: #ffcc00; }
-    .close-btn { color: white; font-size: 30px; text-align: right; cursor: pointer; margin-bottom: 20px; }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* EVENTS HERO */
-    .events-header {
-      background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), 
-                  url('images.unsplash.com');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-    }
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#0F172A,#EAF2FF);
+  color:#0B1F3B;
+  padding-top:90px;
+}
 
-    /* EVENT CARDS SECTION */
-    .events-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-    }
+/* ================= NAVBAR (UNCHANGED) ================= */
 
-    .event-card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  background:#16213E;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 6px 25px rgba(0,0,0,0.35);
+  z-index:1000;
+}
 
-    .event-card:hover { transform: translateY(-5px); }
+.navbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(239,192,123,0.65),
+    transparent
+  );
+}
 
-    .event-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+.nav-left{display:flex;align-items:center;z-index:2;}
+.nav-logo{height:68px;}
 
-    .event-content { padding: 25px; }
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+}
 
-    .event-date {
-      color: #00aaff;
-      font-weight: bold;
-      font-size: 14px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      display: block;
-    }
+.brand-main{
+  font-family:'Playfair Display',serif;
+  font-size:1.55rem;
+  letter-spacing:4px;
+  color:#fff;
+}
 
-    .event-title {
-      color: #003366;
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+.brand-sub{
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#EFC07B;
+}
 
-    .event-desc {
-      font-size: 15px;
-      color: #666;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+.nav-right{z-index:3;}
+.menu-toggle{
+  background:none;
+  border:none;
+  font-size:30px;
+  color:#EFC07B;
+  cursor:pointer;
+}
 
-    .event-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-    }
+/* SIDEBAR (UNCHANGED) */
 
-    .price { font-weight: bold; color: #333; }
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:360px;
+  height:100%;
+  background:#0F172A;
+  border-left:1px solid rgba(255,255,255,0.08);
+  box-shadow:-20px 0 45px rgba(0,0,0,0.55);
+  padding:110px 40px;
+  transition:0.55s cubic-bezier(0.77,0,0.175,1);
+  z-index:3000;
+}
+.sidebar.active{right:0;}
 
-    .btn-register {
-      background: #003366;
-      color: white;
-      padding: 8px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+.sidebar-close{
+  position:absolute;
+  top:28px;
+  right:35px;
+  font-size:32px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
 
-    .btn-register:hover { background: #00aaff; }
+.sidebar a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:26px;
+  transition:0.3s;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #777;
-      font-size: 14px;
-    }
-  </style>
+.sidebar a:hover,
+.sidebar a.active{
+  color:#EFC07B;
+  transform:translateX(12px);
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  z-index:2500;
+}
+.overlay.active{display:block;}
+
+/* ================= EVENTS HERO ================= */
+
+.events-hero{
+  text-align:center;
+  padding:110px 20px 80px;
+  color:#fff;
+}
+
+.events-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;
+  margin-bottom:16px;
+}
+
+.events-hero p{
+  max-width:700px;
+  margin:auto;
+  font-size:1.05rem;
+  opacity:0.9;
+}
+
+/* ================= EVENTS GRID ================= */
+
+.events-grid{
+  max-width:1200px;
+  margin:0 auto 120px;
+  padding:0 24px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:46px;
+}
+
+/* ================= EVENT CARD ================= */
+
+.event-card{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(18px);
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 40px 90px rgba(15,23,42,0.25);
+  transition:0.45s;
+  position:relative;
+}
+
+.event-card:hover{
+  transform:translateY(-14px);
+}
+
+.event-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.member-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  background:rgba(255,255,255,0.9);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:600;
+  color:#16213E;
+}
+
+.event-content{
+  padding:30px;
+}
+
+.event-date{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#16213E;
+  margin-bottom:14px;
+  display:block;
+}
+
+.event-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.45rem;
+  margin-bottom:14px;
+}
+
+.event-desc{
+  font-size:0.95rem;
+  color:#5C6B82;
+  line-height:1.6;
+  margin-bottom:26px;
+}
+
+.event-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid rgba(0,0,0,0.08);
+  padding-top:18px;
+}
+
+.price{
+  font-weight:600;
+}
+
+.btn{
+  padding:10px 26px;
+  border-radius:30px;
+  background:#16213E;
+  color:#EFC07B;
+  text-decoration:none;
+  font-size:0.85rem;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:60px 20px;
+  color:#6B7280;
+  background:#F3F6FB;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-center{display:none;}
+  .sidebar{width:100%;}
+}
+</style>
 </head>
+
 <body>
 
-  <nav class="navbar">
-    <div class="nav-left"><img src="Chillthrivelogo.jpeg" alt="Logo" class="logo"></div>
-    <div class="nav-title">Chill Thrive <span class="tagline">Ice Bath Center</span></div>
-    <div class="menu" onclick="toggleMenu()">☰</div>
-  </nav>
-
-  <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="closemenu()">×</div>
-    <div style="clear:both;">
-            <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
-            <a href="services.html"><i class="fa-solid fa-spa"></i>Services</a>
-            <a href="awarness.html"><i class="fa-solid fa-brain"></i>Awareness</a>
-            <a href="founderpage.html"><i class="fa-solid fa-user"></i>Our Story</a>
-            <a href="events.html"><i class="fa-solid fa-calendar-days"></i>Events</a>
-            <a href="testimonials.html"><i class="fa-solid fa-star"></i>Reviews</a>
-            <a href="gallery.html"><i class="fa-solid fa-image"></i>Gallery</a>
-            <a href="contact.html"><i class="fa-solid fa-phone"></i>Contact Us</a>
-        </div>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="chillthrive.png" class="nav-logo">
   </div>
 
-  <header class="events-header">
-    <h1>Community & Events</h1>
-    <p>Join us for workshops, group plunges, and wellness retreats designed to push your limits.</p>
-  </header>
+  <div class="nav-center">
+    <div class="brand-main">CHILL THRIVE</div>
+    <div class="brand-sub">Ice Bath Center</div>
+  </div>
 
-  <main class="events-container" id="publicEvents"></main>
+  <div class="nav-right">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
 
-  <footer>
-    &copy; 2025 Chill Thrive Ice Bath Center. Stay Chill.
-  </footer>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()">×</button>
+  <a href="#"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="#"><i class="fa-solid fa-spa"></i>Services</a>
+  <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+  <a href="#"><i class="fa-solid fa-user"></i>Founder</a>
+  <a href="#"><i class="fa-solid fa-phone"></i>Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="events-hero">
+  <h1>Members-Only Experiences</h1>
+  <p>Private wellness events crafted for discipline, recovery, and elite performance.</p>
+</section>
+
+<!-- EVENTS -->
+
+
+
+  <!-- <div class="event-card">
+    <span class="member-badge">MEMBERS ONLY</span>
+    <img src="https://i.pinimg.com/1200x/c7/78/65/c77865b4866ded2d1b66089c8e226697.jpg" class="event-img">
+    <div class="event-content">
+      <span class="event-date">March 12 • 6:30 AM</span>
+      <h3 class="event-title">Sunrise Ice Immersion</h3>
+      <p class="event-desc">A guided cold plunge ritual designed to reset your nervous system and sharpen mental clarity.</p>
+      <div class="event-footer">
+        <span class="price">₹1,499</span>
+        <a class="btn">Request Access</a>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="event-card">
+    <span class="member-badge">MEMBERS ONLY</span>
+    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef" class="event-img">
+    <div class="event-content">
+      <span class="event-date">March 20 • 7:00 PM</span>
+      <h3 class="event-title">Breathwork & Ice Reset</h3>
+      <p class="event-desc">Advanced breath control followed by ice immersion to unlock deep focus and resilience.</p>
+      <div class="event-footer">
+        <span class="price">₹2,499</span>
+        <a class="btn">Request Access</a>
+      </div>
+    </div>
+  </div> -->
+<!-- 
+  <div class="event-card">
+    <span class="member-badge">MEMBERS ONLY</span>
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773" class="event-img">
+    <div class="event-content">
+      <span class="event-date">April 2 • 5:30 AM</span>
+      <h3 class="event-title">Elite Cold Endurance</h3>
+      <p class="event-desc">A premium endurance experience for members pushing physical and mental limits.</p>
+      <div class="event-footer">
+        <span class="price">₹3,999</span>
+        <a class="btn">Invite Only</a>
+      </div>
+    </div>
+  </div> -->
+
+<section class="events-grid" id="publicEvents"></section>
+
+
+<footer>
+  © 2025 Chill Thrive — Private Wellness Collective
+</footer>
 
   <script>
     function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
@@ -177,12 +375,13 @@ event web page:
   const container = document.getElementById("publicEvents");
 
   if(events.length === 0){
-    container.innerHTML = "<p style='text-align:center'>No upcoming events</p>";
+    container.innerHTML = "<p style='text-align:center;color:white'>No upcoming events</p>";
   }
 
   events.forEach(e => {
     container.innerHTML += `
       <div class="event-card">
+        <span class="member-badge">MEMBERS ONLY</span>
         <img src="${e.image}" class="event-img">
         <div class="event-content">
           <span class="event-date">${e.date} • ${e.time}</span>
@@ -190,7 +389,7 @@ event web page:
           <p class="event-desc">${e.description}</p>
           <div class="event-footer">
             <span class="price">${e.price}</span>
-            <a href="#" class="btn-register">Join Now</a>
+            <a class="btn">BooK Now</a>
           </div>
         </div>
       </div>
@@ -198,6 +397,7 @@ event web page:
   });
 </script>
 
-</body>
 
+
+</body>
 </html>
