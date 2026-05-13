@@ -131,7 +131,7 @@ This project demonstrates real-world application of web technologies and serves 
 
 ## 👤 Author
 
-Team Code Crackers
+Team Code Crackers-
 Rushil Desai,
 Vishrut Vasavda,
 Mayank Meena,
